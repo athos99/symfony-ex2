@@ -1,0 +1,45 @@
+AppBundle\Entity\Projet:
+    type: entity
+    table: projet
+    indexes:
+        IDX_D34A04AD12469DE2:
+            columns:
+                - name
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        numero:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        version:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        actif:
+            type: boolean
+            nullable: true
+        cretedAt:
+            type: datetime
+            nullable: true
+            column: creted_at
+        updateAt:
+            type: datetime
+            nullable: true
+            column: update_at
+    lifecycleCallbacks: {  }

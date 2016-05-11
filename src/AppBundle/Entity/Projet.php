@@ -7,91 +7,62 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Projet
  *
- * @ORM\Table(name="projet")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjetRepository")
+ * @ORM\Table(name="projet", indexes={@ORM\Index(name="IDX_D34A04AD12469DE2", columns={"name"})})
+ * @ORM\Entity
  */
 class Projet
 {
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
-    private $titre;
+    private $name;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="numero", type="integer", nullable=false)
      */
-    private $description;
-
+    private $numero;
 
     /**
-     * Get id
+     * @var integer
      *
-     * @return int
+     * @ORM\Column(name="version", type="integer", nullable=true)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $version;
 
     /**
-     * Set titre
+     * @var boolean
      *
-     * @param string $titre
-     *
-     * @return Projet
+     * @ORM\Column(name="actif", type="boolean", nullable=true)
      */
-    public function setTitre($titre)
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
+    private $actif;
 
     /**
-     * Get titre
+     * @var \DateTime
      *
-     * @return string
+     * @ORM\Column(name="creted_at", type="datetime", nullable=true)
      */
-    public function getTitre()
-    {
-        return $this->titre;
-    }
+    private $cretedAt;
 
     /**
-     * Set description
+     * @var \DateTime
      *
-     * @param string $description
-     *
-     * @return Projet
+     * @ORM\Column(name="update_at", type="datetime", nullable=true)
      */
-    public function setDescription($description)
-    {
-        $this->description = $description;
+    private $updateAt;
 
-        return $this;
-    }
 
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 }
 

@@ -1,0 +1,77 @@
+AppBundle\Entity\Rubrique:
+    type: entity
+    table: rubrique
+    indexes:
+        IDX_BAAB7A1079066886:
+            columns:
+                - root_id
+        IDX_BAAB7A10727ACA70:
+            columns:
+                - parent_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        rootId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: root_id
+        parentId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: parent_id
+        lft:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        rgt:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        lvl:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        name:
+            type: string
+            nullable: true
+            length: 64
+            options:
+                fixed: false
+        title:
+            type: string
+            nullable: true
+            length: 256
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        active:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }

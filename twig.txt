@@ -1,0 +1,50 @@
+# Default configuration for extension with alias: "twig"
+twig:
+    exception_controller:  'twig.controller.exception:showAction'
+    form_themes:
+
+        # Default:
+        - form_div_layout.html.twig
+
+        # Example:
+        - MyBundle::form.html.twig
+    globals:
+
+        # Examples:
+        foo:                 "@bar"
+        pi:                  3.14
+
+        # Prototype
+        key:
+            id:                   ~
+            type:                 ~
+            value:                ~
+    autoescape:           filename
+    autoescape_service:   null
+    autoescape_service_method:  null
+    base_template_class:  ~ # Example: Twig_Template
+    cache:                '%kernel.cache_dir%/twig'
+    charset:              '%kernel.charset%'
+    debug:                '%kernel.debug%'
+    strict_variables:     ~
+    auto_reload:          ~
+    optimizations:        ~
+    paths:
+
+        # Prototype
+        paths:                ~
+
+    # The default format options used by the date filter
+    date:
+        format:               'F j, Y H:i'
+        interval_format:      '%d days'
+
+        # The timezone used when formatting dates, when set to null, the timezone returned by date_default_timezone_get() is used
+        timezone:             null
+
+    # The default format options for the number_format filter
+    number_format:
+        decimals:             0
+        decimal_point:        .
+        thousands_separator:  ','
+

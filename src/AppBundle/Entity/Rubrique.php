@@ -1,14 +1,16 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Rubrique
  *
- * @ORM\Table(name="rubrique", indexes={@ORM\Index(name="IDX_BAAB7A1079066886", columns={"root_id"}), @ORM\Index(name="IDX_BAAB7A10727ACA70", columns={"parent_id"})})
- * @ORM\Entity
+ * @Gedmo\Tree(type="nested")
+ * @ORM\Table(name="rubrique")
+ * use repository for handy tree functions
+ * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository") *
  */
 class Rubrique
 {
@@ -22,22 +24,27 @@ class Rubrique
     private $id;
 
     /**
-     * @var integer
+     * @var \AppBundle\Entity\Rubrique
      *
-     * @ORM\Column(name="root_id", type="integer", nullable=true)
+     * @Gedmo\TreeRoot
+     * @ORM\ManyToOne(targetEntity="Rubrique")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
-    private $rootId;
+    private $root;
+
+    /**
+     * @var \AppBundle\Entity\Rubrique
+     *
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="Rubrique", inversedBy="children")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $parent;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="parent_id", type="integer", nullable=true)
-     */
-    private $parentId;
-
-    /**
-     * @var integer
-     *
+     * @Gedmo\TreeLeft
      * @ORM\Column(name="lft", type="integer", nullable=false)
      */
     private $lft;
@@ -45,6 +52,7 @@ class Rubrique
     /**
      * @var integer
      *
+     * @Gedmo\TreeRight
      * @ORM\Column(name="rgt", type="integer", nullable=false)
      */
     private $rgt;
@@ -52,9 +60,20 @@ class Rubrique
     /**
      * @var integer
      *
+     * @Gedmo\TreeLevel
      * @ORM\Column(name="lvl", type="integer", nullable=false)
      */
     private $lvl;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="Rubrique", mappedBy="parent")
+     * @ORM\OrderBy({"lft" = "ASC"})
+     */
+    private $children;
+
+
 
     /**
      * @var string

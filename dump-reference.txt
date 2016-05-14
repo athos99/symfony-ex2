@@ -1,0 +1,21 @@
+
+ // Provide the name of a bundle as the first argument of this command to dump its default configuration.
+
+Available registered bundles with their extension alias if available:
++------------------------------+--------------------------+
+|[32m Bundle name                  [39m|[32m Extension alias          [39m|
++------------------------------+--------------------------+
+| AppBundle                    |                          |
+| DebugBundle                  | debug                    |
+| DoctrineBundle               | doctrine                 |
+| FrameworkBundle              | framework                |
+| MonologBundle                | monolog                  |
+| SecurityBundle               | security                 |
+| SensioDistributionBundle     | sensio_distribution      |
+| SensioFrameworkExtraBundle   | sensio_framework_extra   |
+| SensioGeneratorBundle        |                          |
+| StofDoctrineExtensionsBundle | stof_doctrine_extensions |
+| SwiftmailerBundle            | swiftmailer              |
+| TwigBundle                   | twig                     |
+| WebProfilerBundle            | web_profiler             |
++------------------------------+--------------------------+

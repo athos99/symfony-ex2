@@ -37,7 +37,11 @@ class DefaultController extends Controller
     {
 
         $data = Util::loadExcel('rubrique.xlsx');
+        $root = [];
+        foreach( $data as $record) {
 
+        }
+        $em = $this->getDoctrine()->getManager();
 
         $response = new Response('Hello ', Response::HTTP_OK);
 

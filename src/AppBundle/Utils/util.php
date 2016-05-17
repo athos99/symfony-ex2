@@ -61,4 +61,49 @@ class Util {
         }
         return $data;
     }
+
+
+    /**
+     * convert a flat array to a tree
+     *
+     * exemple:
+     *
+     *
+     * $tree = Util::buildTree($data, '',
+     *     function ($element) {
+     *  return $element['index'];
+     *} ,
+     *  function ($element) {
+     *    return substr($element['index'], 0, strripos($element['index'], '.'));
+     *   });
+     *
+     *
+     *
+     * @param array $elements flat array
+     * @param $root                    root element index
+     * @param  callable  $functionGetElement      function to get index of element
+     * @param  callable  $functionGetParent       function to get index of parent
+     * @return array          the tree
+     */
+    public static function buildTree(array &$elements, $root, callable $functionGetElement, callable  $functionGetParent)
+    {
+        $branch = [];
+
+        foreach ($elements as $element) {
+            $parent = $functionGetParent($element);
+            if ($parent == $root) {
+                $children = self::buildTree($elements, $functionGetElement($element), $functionGetElement, $functionGetParent);
+                if ($children) {
+                    $element['children'] = $children;
+                }
+                $branch[] = $element;
+            }
+        }
+
+        return $branch;
+    }
+
+
+
+
 }

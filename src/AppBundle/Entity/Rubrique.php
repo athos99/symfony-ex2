@@ -82,20 +82,13 @@ class Rubrique
      */
     private $name;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=256, nullable=true)
-     */
-    private $title;
-
 
     /**
      * @var string
      *
-     * @ORM\Column(name="index", type="string", length=64, nullable=true)
+     * @ORM\Column(name="ref", type="string", length=64, nullable=true)
      */
-    private $index;
+    private $ref;
 
 
 
@@ -243,51 +236,27 @@ class Rubrique
     }
 
     /**
-     * Set title
+     * Set ref
      *
-     * @param string $title
+     * @param string $ref
      *
      * @return Rubrique
      */
-    public function setTitle($title)
+    public function setRef($ref)
     {
-        $this->title = $title;
+        $this->ref = $ref;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get ref
      *
      * @return string
      */
-    public function getTitle()
+    public function getRef()
     {
-        return $this->title;
-    }
-
-    /**
-     * Set index
-     *
-     * @param string $index
-     *
-     * @return Rubrique
-     */
-    public function setIndex($index)
-    {
-        $this->index = $index;
-
-        return $this;
-    }
-
-    /**
-     * Get index
-     *
-     * @return string
-     */
-    public function getIndex()
-    {
-        return $this->index;
+        return $this->ref;
     }
 
     /**

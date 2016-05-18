@@ -5,14 +5,14 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Rubrique
+ * Cfc
  *
  * @Gedmo\Tree(type="nested")
- * @ORM\Table(name="rubrique")
+ * @ORM\Table(name="cfc")
  * use repository for handy tree functions
- * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository") *
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CfcRepository") *
  */
-class Rubrique
+class Cfc
 {
     /**
      * @var integer
@@ -24,19 +24,19 @@ class Rubrique
     private $id;
 
     /**
-     * @var \AppBundle\Entity\Rubrique
+     * @var \AppBundle\Entity\Cfc
      *
      * @Gedmo\TreeRoot
-     * @ORM\ManyToOne(targetEntity="Rubrique")
+     * @ORM\ManyToOne(targetEntity="Cfc")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
     private $root;
 
     /**
-     * @var \AppBundle\Entity\Rubrique
+     * @var \AppBundle\Entity\Cfc
      *
      * @Gedmo\TreeParent
-     * @ORM\ManyToOne(targetEntity="Rubrique", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="Cfc", inversedBy="children")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
     private $parent;
@@ -68,7 +68,7 @@ class Rubrique
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="Rubrique", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Cfc", mappedBy="parent")
      * @ORM\OrderBy({"lft" = "ASC"})
      */
     private $children;
@@ -144,7 +144,7 @@ class Rubrique
      *
      * @param integer $lft
      *
-     * @return Rubrique
+     * @return Cfc
      */
     public function setLft($lft)
     {
@@ -168,7 +168,7 @@ class Rubrique
      *
      * @param integer $rgt
      *
-     * @return Rubrique
+     * @return Cfc
      */
     public function setRgt($rgt)
     {
@@ -192,7 +192,7 @@ class Rubrique
      *
      * @param integer $lvl
      *
-     * @return Rubrique
+     * @return Cfc
      */
     public function setLvl($lvl)
     {
@@ -216,7 +216,7 @@ class Rubrique
      *
      * @param string $name
      *
-     * @return Rubrique
+     * @return Cfc
      */
     public function setName($name)
     {
@@ -240,7 +240,7 @@ class Rubrique
      *
      * @param string $ref
      *
-     * @return Rubrique
+     * @return Cfc
      */
     public function setRef($ref)
     {
@@ -264,7 +264,7 @@ class Rubrique
      *
      * @param string $description
      *
-     * @return Rubrique
+     * @return Cfc
      */
     public function setDescription($description)
     {
@@ -288,7 +288,7 @@ class Rubrique
      *
      * @param \DateTime $createdAt
      *
-     * @return Rubrique
+     * @return Cfc
      */
     public function setCreatedAt($createdAt)
     {
@@ -312,7 +312,7 @@ class Rubrique
      *
      * @param \DateTime $updatedAt
      *
-     * @return Rubrique
+     * @return Cfc
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -336,7 +336,7 @@ class Rubrique
      *
      * @param boolean $active
      *
-     * @return Rubrique
+     * @return Cfc
      */
     public function setActive($active)
     {
@@ -358,11 +358,11 @@ class Rubrique
     /**
      * Set root
      *
-     * @param \AppBundle\Entity\Rubrique $root
+     * @param \AppBundle\Entity\Cfc $root
      *
-     * @return Rubrique
+     * @return Cfc
      */
-    public function setRoot(\AppBundle\Entity\Rubrique $root = null)
+    public function setRoot(\AppBundle\Entity\Cfc $root = null)
     {
         $this->root = $root;
 
@@ -372,7 +372,7 @@ class Rubrique
     /**
      * Get root
      *
-     * @return \AppBundle\Entity\Rubrique
+     * @return \AppBundle\Entity\Cfc
      */
     public function getRoot()
     {
@@ -382,11 +382,11 @@ class Rubrique
     /**
      * Set parent
      *
-     * @param \AppBundle\Entity\Rubrique $parent
+     * @param \AppBundle\Entity\Cfc $parent
      *
-     * @return Rubrique
+     * @return Cfc
      */
-    public function setParent(\AppBundle\Entity\Rubrique $parent = null)
+    public function setParent(\AppBundle\Entity\Cfc $parent = null)
     {
         $this->parent = $parent;
 
@@ -396,7 +396,7 @@ class Rubrique
     /**
      * Get parent
      *
-     * @return \AppBundle\Entity\Rubrique
+     * @return \AppBundle\Entity\Cfc
      */
     public function getParent()
     {
@@ -406,11 +406,11 @@ class Rubrique
     /**
      * Add child
      *
-     * @param \AppBundle\Entity\Rubrique $child
+     * @param \AppBundle\Entity\Cfc $child
      *
-     * @return Rubrique
+     * @return Cfc
      */
-    public function addChild(\AppBundle\Entity\Rubrique $child)
+    public function addChild(\AppBundle\Entity\Cfc $child)
     {
         $this->children[] = $child;
 
@@ -420,9 +420,9 @@ class Rubrique
     /**
      * Remove child
      *
-     * @param \AppBundle\Entity\Rubrique $child
+     * @param \AppBundle\Entity\Cfc $child
      */
-    public function removeChild(\AppBundle\Entity\Rubrique $child)
+    public function removeChild(\AppBundle\Entity\Cfc $child)
     {
         $this->children->removeElement($child);
     }

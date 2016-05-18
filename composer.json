@@ -22,9 +22,12 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "stof/doctrine-extensions-bundle": "^1.2",
-        "twbs/bootstrap-sass": "~3.3",
+        "symfony/assetic-bundle": "^2.3",
+        "twbs/bootstrap-sass": "^3.3",
         "knplabs/knp-menu-bundle": "^2.0",
-        "phpoffice/phpexcel":"1.8"
+        "phpoffice/phpexcel":"1.8",
+        "knplabs/knp-paginator-bundle" : "^2.5",
+        "mopa/bootstrap-bundle": "^3.0"
 
     },
     "require-dev": {

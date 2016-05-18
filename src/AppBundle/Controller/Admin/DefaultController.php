@@ -2,7 +2,8 @@
 
 namespace AppBundle\Controller\Admin;
 
-use AppBundle\Entity\Rubrique;
+use AppBundle\Entity\Cfc;
+use AppBundle\Repository\CfcRepository;
 use AppBundle\Utils\Util;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -38,7 +39,7 @@ class DefaultController extends Controller
     public function test1Action(Request $request)
     {
 
-        $data = Util::loadExcel('rubrique.xlsx');
+        $data = Util::loadExcel('cfc.xlsx');
         $tree = Util::buildTree($data, '',
             function ($element) {
                 return $element['ref'];
@@ -51,24 +52,10 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
 
-        $query = $em->createQuery(
-            'DELETE FROM AppBundle:Rubrique');
-        $query->execute();
 
-
-        $rubrique = new Rubrique();
-        $rubrique->setName('root');
-        $rubrique->setDescription('bla bla bla');
-        $rubrique->setRef( null);
-        $em->persist($rubrique);
-        $em->flush();
-
-        $this->persistTree( $tree, $rubrique, $em);
-
-        $response = new Response('Hello ', Response::HTTP_OK);
-
-
-        $repo = $em->getRepository('AppBundle:Rubrique');
+        /** @var CfcRepository $repo */
+        $repo = $em->getRepository('AppBundle:Cfc');
+        $repo->saveDataTree($tree);
 
         $htmlTree = $repo->childrenHierarchy(
             null, /* starting from root nodes */
@@ -80,22 +67,16 @@ class DefaultController extends Controller
             )
         );
         echo $htmlTree;
-        return $response;
+        return $this->render(
+            'default/index.html.twig',
+            [
+                'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..') . ' for admin',
+            ]
+        );
+
+
+//        return  new Response('Hello ', Response::HTTP_OK);
     }
 
-    protected function persistTree( $tree, $parent,$em) {
-      foreach( $tree as &$elem) {
-         $rubrique = new Rubrique();
-         $rubrique->setName(isset($elem['name']) ? $elem['name'] : null);
-         $rubrique->setDescription(isset($elem['description']) ? $elem['description'] : null);
-         $rubrique->setRef(isset($elem['ref']) ? $elem['ref'] : null);
-         $rubrique->setParent($parent);
-         $em->persist($rubrique);
-          if (!empty($elem['children'])) {
-              $this->persistTree($elem['children'], $rubrique,$em);
-          }
-      }
-      $em->flush();
-    }
 
 }

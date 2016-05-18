@@ -39,6 +39,16 @@ twig:
     form_themes:
         - bootstrap_3_layout.html.twig
 
+
+doctrine_cache:
+    providers:
+        doctrine.orm.default_metadata_cache:
+            file_system:
+                directory:            '%kernel.cache_dir%/doctrine/cache/file_system'
+                extension:            null
+                umask:                2
+
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -98,3 +108,39 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+
+
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: "%kernel.debug%"
+    bundles:        [ ]
+    filters:
+        cssrewrite: ~
+
+mopa_bootstrap:
+    form: ~  # Adds twig form theme  support
+    menu: ~
+#       template: MyBundles:Menu:template.html.twig
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: knp_menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig
+
+
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template

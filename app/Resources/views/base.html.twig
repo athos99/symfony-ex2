@@ -1,13 +1,33 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+{% extends 'style/base.html.twig' %}
+{% block title %}GI{% endblock %}
+{% block head_style %}
+    {% stylesheets
+    '@MopaBootstrapBundle/Resources/public/bootstrap/dist/css/bootstrap.css'
+    '@app/Resources/css/default.css' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>
+    {% endstylesheets %}
+{% endblock %}
+{% block head_script %}
+    {% javascripts
+    'jquery/dist/jquery.min.js'
+    '@MopaBootstrapBundle/Resources/public/bootstrap/dist/js/bootstrap.min.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+{% block navbar %}
+    {% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: true, staticTop: false, inverse: false } %}
+        {% block brand %}
+            <a class="navbar-brand" href="#">Mopa Bootstrap</a>
+        {% endblock %}
+        {% block menu %}
+            {{ mopa_bootstrap_menu('AppBundle:Builder:mainMenu',  {'automenu':'navbar'}) }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+{% block body_end %}
+{% endblock %}
+{% block footer %}
+    <p><a href="https://prod.etat-ge.ch/" target="_blank">EdG</a></p>
+{% endblock footer %}
+{% block headline %}G.I.{% endblock headline %}
+

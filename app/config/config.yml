@@ -124,6 +124,8 @@ mopa_bootstrap:
     form: ~  # Adds twig form theme  support
     menu: ~
 #       template: MyBundles:Menu:template.html.twig
+
+
 knp_menu:
     # use "twig: false" to disable the Twig extension and the TwigRenderer
     twig:

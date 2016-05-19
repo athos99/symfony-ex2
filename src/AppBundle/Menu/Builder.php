@@ -1,5 +1,4 @@
 <?php
-// src/AppBundle/Menu/Builder.php
 namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
@@ -15,10 +14,8 @@ class Builder implements ContainerAwareInterface
     {
         $menu = $factory->createItem('root');
         $menu->addChild('Home', array('route' => 'homepage'));
-        $menu->addChild('Admin', array('route' => 'homepage'));
-        $menu['Admin']->addChild('Projet', array('route' => 'ctitprojet_index'));
-        $menu['Admin']->addChild('Test', array('route' => 'ctitest_index'));
-
+        $menu->addChild('Admin', array('route' => 'admin_homepage'));
+        $menu['Admin']->addChild('Test 1', array('route' => 'admin_test1'));
         return $menu;
     }
 }

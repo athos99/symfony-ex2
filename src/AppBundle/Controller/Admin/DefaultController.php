@@ -66,11 +66,10 @@ class DefaultController extends Controller
                 'html' => true
             )
         );
-        echo $htmlTree;
         return $this->render(
-            'default/index.html.twig',
+            'admin/test1.html.twig',
             [
-                'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..') . ' for admin',
+                'tree' => $htmlTree,
             ]
         );
 

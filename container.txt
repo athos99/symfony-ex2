@@ -1,11 +1,16 @@
 
-[33mSymfony Container Public Services[39m
-[33m=================================[39m
+Symfony Container Public Services
+=================================
 
  -------------------------------------------------------------------- -------------------------------------------------------------------------------------------- 
-  [32mService ID[39m                                                           [32mClass name[39m                                                                                  
+  Service ID                                                           Class name                                                                                  
  -------------------------------------------------------------------- -------------------------------------------------------------------------------------------- 
   annotation_reader                                                    Doctrine\Common\Annotations\CachedReader                                                    
+  assetic.asset_manager                                                Assetic\Factory\LazyAssetManager                                                            
+  assetic.controller                                                   Symfony\Bundle\AsseticBundle\Controller\AsseticController                                   
+  assetic.filter.cssrewrite                                            Assetic\Filter\CssRewriteFilter                                                             
+  assetic.filter_manager                                               Symfony\Bundle\AsseticBundle\FilterManager                                                  
+  assetic.request_listener                                             Symfony\Bundle\AsseticBundle\EventListener\RequestListener                                  
   assets.context                                                       Symfony\Component\Asset\Context\RequestStackContext                                         
   assets.packages                                                      Symfony\Component\Asset\Packages                                                            
   cache_clearer                                                        Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer                                 
@@ -36,7 +41,7 @@
   doctrine.orm.entity_manager                                          alias for "doctrine.orm.default_entity_manager"                                             
   doctrine.orm.validator.unique                                        Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator                         
   doctrine.orm.validator_initializer                                   Symfony\Bridge\Doctrine\Validator\DoctrineInitializer                                       
-  doctrine_cache.providers.doctrine.orm.default_metadata_cache         Doctrine\Common\Cache\ArrayCache                                                            
+  doctrine_cache.providers.doctrine.orm.default_metadata_cache         Doctrine\Common\Cache\FilesystemCache                                                       
   doctrine_cache.providers.doctrine.orm.default_query_cache            Doctrine\Common\Cache\ArrayCache                                                            
   doctrine_cache.providers.doctrine.orm.default_result_cache           Doctrine\Common\Cache\ArrayCache                                                            
   event_dispatcher                                                     alias for "debug.event_dispatcher"                                                          
@@ -94,12 +99,28 @@
   http_kernel                                                          Symfony\Component\HttpKernel\HttpKernel                                                     
   kernel                                                                                                                                                           
   kernel.class_cache.cache_warmer                                      Symfony\Bundle\FrameworkBundle\CacheWarmer\ClassCacheCacheWarmer                            
+  knp_menu.factory                                                     Knp\Menu\MenuFactory                                                                        
+  knp_menu.listener.voters                                             Knp\Bundle\MenuBundle\EventListener\VoterInitializerListener                                
+  knp_menu.matcher                                                     Knp\Menu\Matcher\Matcher                                                                    
+  knp_menu.menu_provider                                               Knp\Menu\Provider\ChainProvider                                                             
+  knp_menu.renderer.list                                               Knp\Menu\Renderer\ListRenderer                                                              
+  knp_menu.renderer.twig                                               Knp\Menu\Renderer\TwigRenderer                                                              
+  knp_menu.renderer_provider                                           Knp\Bundle\MenuBundle\Renderer\ContainerAwareProvider                                       
+  knp_menu.voter.router                                                Knp\Menu\Matcher\Voter\RouteVoter                                                           
+  knp_paginator                                                        Knp\Component\Pager\Paginator                                                               
+  knp_paginator.helper.processor                                       Knp\Bundle\PaginatorBundle\Helper\Processor                                                 
+  knp_paginator.subscriber.filtration                                  Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber                        
+  knp_paginator.subscriber.paginate                                    Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber                          
+  knp_paginator.subscriber.sliding_pagination                          Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber                           
+  knp_paginator.subscriber.sortable                                    Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber                            
+  knp_paginator.twig.extension.pagination                              Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension                               
   locale_listener                                                      Symfony\Component\HttpKernel\EventListener\LocaleListener                                   
   logger                                                               Symfony\Bridge\Monolog\Logger                                                               
   mailer                                                               alias for "swiftmailer.mailer.default"                                                      
   monolog.handler.console                                              Symfony\Bridge\Monolog\Handler\ConsoleHandler                                               
   monolog.handler.debug                                                Symfony\Bridge\Monolog\Handler\DebugHandler                                                 
   monolog.handler.main                                                 Monolog\Handler\StreamHandler                                                               
+  monolog.logger.assetic                                               Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.doctrine                                              Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.event                                                 Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.php                                                   Symfony\Bridge\Monolog\Logger                                                               
@@ -109,6 +130,27 @@
   monolog.logger.security                                              Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.templating                                            Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.translation                                           Symfony\Bridge\Monolog\Logger                                                               
+  mopa_bootstrap.form.type.form_actions                                Mopa\Bundle\BootstrapBundle\Form\Type\FormActionsType                                       
+  mopa_bootstrap.form.type.tab                                         Mopa\Bundle\BootstrapBundle\Form\Type\TabType                                               
+  mopa_bootstrap.form.type_extension.button                            Mopa\Bundle\BootstrapBundle\Form\Extension\IconButtonExtension                              
+  mopa_bootstrap.form.type_extension.date                              Mopa\Bundle\BootstrapBundle\Form\Extension\DateTypeExtension                                
+  mopa_bootstrap.form.type_extension.datetime                          Mopa\Bundle\BootstrapBundle\Form\Extension\DatetimeTypeExtension                            
+  mopa_bootstrap.form.type_extension.embed_form                        Mopa\Bundle\BootstrapBundle\Form\Extension\EmbedFormExtension                               
+  mopa_bootstrap.form.type_extension.error                             Mopa\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFormTypeExtension                       
+  mopa_bootstrap.form.type_extension.help                              Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension                            
+  mopa_bootstrap.form.type_extension.horizontal                        Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension                      
+  mopa_bootstrap.form.type_extension.legend                            Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension                          
+  mopa_bootstrap.form.type_extension.offset_button                     Mopa\Bundle\BootstrapBundle\Form\Extension\OffsetButtonExtension                            
+  mopa_bootstrap.form.type_extension.static_text                       Mopa\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension                              
+  mopa_bootstrap.form.type_extension.tabbed                            Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension                          
+  mopa_bootstrap.form.type_extension.time                              Mopa\Bundle\BootstrapBundle\Form\Extension\TimeTypeExtension                                
+  mopa_bootstrap.form.type_extension.widget                            Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension                          
+  mopa_bootstrap.form.type_extension.widget_collection                 Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension                
+  mopa_bootstrap.menu.extension                                        Mopa\Bundle\BootstrapBundle\Menu\Factory\MenuExtension                                      
+  mopa_bootstrap.twig.extension.bootstrap_flash                        Mopa\Bundle\BootstrapBundle\Twig\FlashExtension                                             
+  mopa_bootstrap.twig.extension.bootstrap_form                         Mopa\Bundle\BootstrapBundle\Twig\FormExtension                                              
+  mopa_bootstrap.twig.extension.bootstrap_icon                         Mopa\Bundle\BootstrapBundle\Twig\IconExtension                                              
+  mopa_bootstrap.twig.extension.menu                                   Mopa\Bundle\BootstrapBundle\Twig\MenuExtension                                              
   profiler                                                             Symfony\Component\HttpKernel\Profiler\Profiler                                              
   profiler_listener                                                    Symfony\Component\HttpKernel\EventListener\ProfilerListener                                 
   property_accessor                                                    Symfony\Component\PropertyAccess\PropertyAccessor                                           
@@ -217,4 +259,4 @@
   web_profiler.debug_toolbar                                           Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener                      
  -------------------------------------------------------------------- -------------------------------------------------------------------------------------------- 
 
- // To search for a specific service, re-run this command with a search term. (e.g. [33mdebug:container log[39m)
+ // To search for a specific service, re-run this command with a search term. (e.g. debug:container log)

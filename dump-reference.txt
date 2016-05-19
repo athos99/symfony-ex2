@@ -3,13 +3,18 @@
 
 Available registered bundles with their extension alias if available:
 +------------------------------+--------------------------+
-|[32m Bundle name                  [39m|[32m Extension alias          [39m|
+| Bundle name                  | Extension alias          |
 +------------------------------+--------------------------+
 | AppBundle                    |                          |
+| AsseticBundle                | assetic                  |
 | DebugBundle                  | debug                    |
 | DoctrineBundle               | doctrine                 |
+| DoctrineCacheBundle          | doctrine_cache           |
 | FrameworkBundle              | framework                |
+| KnpMenuBundle                | knp_menu                 |
+| KnpPaginatorBundle           | knp_paginator            |
 | MonologBundle                | monolog                  |
+| MopaBootstrapBundle          | mopa_bootstrap           |
 | SecurityBundle               | security                 |
 | SensioDistributionBundle     | sensio_distribution      |
 | SensioFrameworkExtraBundle   | sensio_framework_extra   |

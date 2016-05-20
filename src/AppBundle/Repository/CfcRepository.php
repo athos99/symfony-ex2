@@ -18,7 +18,7 @@ Class CfcRepository extends NestedTreeRepository
        $cfc->setDescription('root');
        $cfc->setRef(null);
        $em->persist($cfc);
-       $em->flush();
+//       $em->flush();
        $this->persistTree($tree, $cfc, $em);
    }
 

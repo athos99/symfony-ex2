@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Tache
  *
- * @ORM\Table(name="tache", indexes={@ORM\Index(name="tache_id", columns={"tache_id"}), @ORM\Index(name="projet_id", columns={"projet_id"})})
+ * @ORM\Table(name="tache")
  * @ORM\Entity
  */
 class Tache
@@ -50,6 +50,14 @@ class Tache
     private $updatedAt;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=false, options={"default":true})
+     */
+    private $active=true;
+
+
+    /**
      * @var \AppBundle\Entity\Projet
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projet")
@@ -60,14 +68,15 @@ class Tache
     private $projet;
 
     /**
-     * @var \AppBundle\Entity\Projet
+     * @var \AppBundle\Entity\Cfc
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projet")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Cfc")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tache_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="cfc_id", referencedColumnName="id")
      * })
      */
-    private $tache;
+    private $cfc;
+
 
 
 
@@ -91,7 +100,7 @@ class Tache
     public function setTitle($title)
     {
         $this->title = $title;
-
+    
         return $this;
     }
 
@@ -115,7 +124,7 @@ class Tache
     public function setDescription($description)
     {
         $this->description = $description;
-
+    
         return $this;
     }
 
@@ -139,7 +148,7 @@ class Tache
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
+    
         return $this;
     }
 
@@ -163,7 +172,7 @@ class Tache
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
+    
         return $this;
     }
 
@@ -187,7 +196,7 @@ class Tache
     public function setProjet(\AppBundle\Entity\Projet $projet = null)
     {
         $this->projet = $projet;
-
+    
         return $this;
     }
 
@@ -202,26 +211,50 @@ class Tache
     }
 
     /**
-     * Set tache
+     * Set cfc
      *
-     * @param \AppBundle\Entity\Projet $tache
+     * @param \AppBundle\Entity\Cfc $cfc
      *
      * @return Tache
      */
-    public function setTache(\AppBundle\Entity\Projet $tache = null)
+    public function setCfc(\AppBundle\Entity\Cfc $cfc = null)
     {
-        $this->tache = $tache;
-
+        $this->cfc = $cfc;
+    
         return $this;
     }
 
     /**
-     * Get tache
+     * Get cfc
      *
-     * @return \AppBundle\Entity\Projet
+     * @return \AppBundle\Entity\Cfc
      */
-    public function getTache()
+    public function getCfc()
     {
-        return $this->tache;
+        return $this->cfc;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return Tache
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 }

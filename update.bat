@@ -1,3 +1,5 @@
+rmdir /Q/S var\cache
+
 
 rmdir /Q vendor\mopa\bootstrap-bundle\Mopa\Bundle\BootstrapBundle\Resources\public\bootstrap
 mklink /D vendor\mopa\bootstrap-bundle\Mopa\Bundle\BootstrapBundle\Resources\public\bootstrap ..\..\..\..\..\..\..\twbs\bootstrap

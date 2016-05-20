@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Projet
  *
- * @ORM\Table(name="projet", indexes={@ORM\Index(name="IDX_D34A04AD12469DE2", columns={"name"})})
- * @ORM\Entity
+ * @ORM\Table(name="projet")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjetRepository")
  */
 class Projet
 {
@@ -21,49 +21,67 @@ class Projet
      */
     private $id;
 
+
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=64, nullable=true)
      */
     private $name;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="numero", type="integer", nullable=false)
-     */
-    private $numero;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="version", type="integer", nullable=true)
+     * @ORM\Column(name="ref", type="string", length=64, nullable=true)
      */
-    private $version;
+    private $ref;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
+     */
+    private $description;
+
+
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="actif", type="boolean", nullable=true)
+     * @ORM\Column(name="active", type="boolean", nullable=false, options={"default":true})
      */
-    private $actif;
+    private $active=true;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creted_at", type="datetime", nullable=true)
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
-    private $cretedAt;
+    private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="update_at", type="datetime", nullable=true)
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    private $updateAt;
+    private $updatedAt;
 
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="Tache", mappedBy="projet")
+     */
+    private $taches;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->taches = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -85,7 +103,7 @@ class Projet
     public function setName($name)
     {
         $this->name = $name;
-
+    
         return $this;
     }
 
@@ -100,122 +118,156 @@ class Projet
     }
 
     /**
-     * Set numero
+     * Set ref
      *
-     * @param integer $numero
+     * @param string $ref
      *
      * @return Projet
      */
-    public function setNumero($numero)
+    public function setRef($ref)
     {
-        $this->numero = $numero;
-
+        $this->ref = $ref;
+    
         return $this;
     }
 
     /**
-     * Get numero
+     * Get ref
      *
-     * @return integer
+     * @return string
      */
-    public function getNumero()
+    public function getRef()
     {
-        return $this->numero;
+        return $this->ref;
     }
 
     /**
-     * Set version
+     * Set description
      *
-     * @param integer $version
+     * @param string $description
      *
      * @return Projet
      */
-    public function setVersion($version)
+    public function setDescription($description)
     {
-        $this->version = $version;
-
+        $this->description = $description;
+    
         return $this;
     }
 
     /**
-     * Get version
+     * Get description
      *
-     * @return integer
+     * @return string
      */
-    public function getVersion()
+    public function getDescription()
     {
-        return $this->version;
+        return $this->description;
     }
 
     /**
-     * Set actif
+     * Set active
      *
-     * @param boolean $actif
+     * @param boolean $active
      *
      * @return Projet
      */
-    public function setActif($actif)
+    public function setActive($active)
     {
-        $this->actif = $actif;
-
+        $this->active = $active;
+    
         return $this;
     }
 
     /**
-     * Get actif
+     * Get active
      *
      * @return boolean
      */
-    public function getActif()
+    public function getActive()
     {
-        return $this->actif;
+        return $this->active;
     }
 
     /**
-     * Set cretedAt
+     * Set createdAt
      *
-     * @param \DateTime $cretedAt
+     * @param \DateTime $createdAt
      *
      * @return Projet
      */
-    public function setCretedAt($cretedAt)
+    public function setCreatedAt($createdAt)
     {
-        $this->cretedAt = $cretedAt;
-
+        $this->createdAt = $createdAt;
+    
         return $this;
     }
 
     /**
-     * Get cretedAt
+     * Get createdAt
      *
      * @return \DateTime
      */
-    public function getCretedAt()
+    public function getCreatedAt()
     {
-        return $this->cretedAt;
+        return $this->createdAt;
     }
 
     /**
-     * Set updateAt
+     * Set updatedAt
      *
-     * @param \DateTime $updateAt
+     * @param \DateTime $updatedAt
      *
      * @return Projet
      */
-    public function setUpdateAt($updateAt)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->updateAt = $updateAt;
-
+        $this->updatedAt = $updatedAt;
+    
         return $this;
     }
 
     /**
-     * Get updateAt
+     * Get updatedAt
      *
      * @return \DateTime
      */
-    public function getUpdateAt()
+    public function getUpdatedAt()
     {
-        return $this->updateAt;
+        return $this->updatedAt;
+    }
+
+    /**
+     * Add tach
+     *
+     * @param \AppBundle\Entity\Tache $tach
+     *
+     * @return Projet
+     */
+    public function addTach(\AppBundle\Entity\Tache $tach)
+    {
+        $this->taches[] = $tach;
+    
+        return $this;
+    }
+
+    /**
+     * Remove tach
+     *
+     * @param \AppBundle\Entity\Tache $tach
+     */
+    public function removeTach(\AppBundle\Entity\Tache $tach)
+    {
+        $this->taches->removeElement($tach);
+    }
+
+    /**
+     * Get taches
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTaches()
+    {
+        return $this->taches;
     }
 }

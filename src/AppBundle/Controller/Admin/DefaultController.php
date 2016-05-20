@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Cfc;
 use AppBundle\Repository\CfcRepository;
+use AppBundle\Repository\ProjetRepository;
 use AppBundle\Utils\Util;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -52,7 +53,6 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
 
-
         /** @var CfcRepository $repo */
         $repo = $em->getRepository('AppBundle:Cfc');
         $repo->saveDataTree($tree);
@@ -77,5 +77,19 @@ class DefaultController extends Controller
 //        return  new Response('Hello ', Response::HTTP_OK);
     }
 
+    /**
+     * @Route("/test2", name="admin_test2")
+     */
+    public function test2Action(Request $request)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
 
+        $data = Util::loadExcel('projet.xlsx');
+
+        /** @var ProjetRepository $repo */
+        $repo = $em->getRepository('AppBundle:Projet');
+        $repo->saveData($data);
+
+    }
 }

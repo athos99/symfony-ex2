@@ -3,7 +3,7 @@
 {% block head_style %}
     {% stylesheets
     '@MopaBootstrapBundle/Resources/public/bootstrap/dist/css/bootstrap.css'
-    '@app/Resources/css/default.css' %}
+    '@AppBundle/Resources/css/style.css' %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>
     {% endstylesheets %}
 {% endblock %}
@@ -17,7 +17,7 @@
 {% block navbar %}
     {% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: true, staticTop: false, inverse: false } %}
         {% block brand %}
-            <a class="navbar-brand" href="#">Mopa Bootstrap</a>
+            <a class="navbar-brand" href="#">Demo</a>
         {% endblock %}
         {% block menu %}
             {{ mopa_bootstrap_menu('AppBundle:Builder:mainMenu',  {'automenu':'navbar'}) }}

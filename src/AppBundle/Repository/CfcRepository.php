@@ -38,5 +38,14 @@ Class CfcRepository extends NestedTreeRepository
         $em->flush();
     }
 
+    public function AllIdByRefs()
+    {
+        return $this->getEntityManager()->createQuery(
+            '
+SELECT c
+FROM AppBundle:Cfc c
+INDEX BY c.ref'
+        )->execute();
+    }
 
 }

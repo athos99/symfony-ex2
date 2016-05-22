@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Projet;
+
 /**
  * ProjetRepository
  *
@@ -15,7 +17,7 @@ class ProjetRepository extends \Doctrine\ORM\EntityRepository
         $em = $this->getEntityManager();
         $query = $em->createQuery('DELETE FROM AppBundle:Projet');
         $query->execute();
-        foreach( $data as $v) {
+        foreach ($data as $elem) {
             $projet = new Projet();
             $projet->setName(isset($elem['name']) ? $elem['name'] : null);
             $projet->setDescription(isset($elem['description']) ? $elem['description'] : null);
@@ -25,5 +27,14 @@ class ProjetRepository extends \Doctrine\ORM\EntityRepository
         $em->flush();
     }
 
+    public function AllIdByRefs()
+    {
+        return $this->getEntityManager()->createQuery(
+            '
+SELECT p
+FROM AppBundle:Projet p
+INDEX BY p.ref'
+        )->execute();
+    }
 
 }

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Rubrique creation</h1>
+{% block cotent %}
+    <h1>Tache creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('rubrique_index') }}">Back to the list</a>
+            <a href="{{ path('tache_index') }}">Back to the list</a>
         </li>
     </ul>
 {% endblock %}

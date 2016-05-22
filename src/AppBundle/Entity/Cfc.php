@@ -122,6 +122,12 @@ class Cfc
     private $updatedAt;
 
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+
 
     /**
      * Constructor

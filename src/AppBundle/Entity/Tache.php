@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Tache
  *
  * @ORM\Table(name="tache")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TacheRepository")
  */
 class Tache
 {
@@ -24,9 +24,18 @@ class Tache
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=256, nullable=true)
+     * @ORM\Column(name="name", type="string", length=64, nullable=true)
      */
-    private $title;
+    private $name;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ref", type="string", length=64, nullable=true)
+     */
+    private $ref;
+
 
     /**
      * @var string
@@ -34,6 +43,16 @@ class Tache
      * @ORM\Column(name="description", type="text", length=65535, nullable=true)
      */
     private $description;
+
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=false, options={"default":true})
+     */
+    private $active=true;
+
 
     /**
      * @var \DateTime
@@ -49,12 +68,6 @@ class Tache
      */
     private $updatedAt;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="active", type="boolean", nullable=false, options={"default":true})
-     */
-    private $active=true;
 
 
     /**
@@ -80,6 +93,7 @@ class Tache
 
 
 
+
     /**
      * Get id
      *
@@ -91,27 +105,51 @@ class Tache
     }
 
     /**
-     * Set title
+     * Set name
      *
-     * @param string $title
+     * @param string $name
      *
      * @return Tache
      */
-    public function setTitle($title)
+    public function setName($name)
     {
-        $this->title = $title;
-    
+        $this->name = $name;
+
         return $this;
     }
 
     /**
-     * Get title
+     * Get name
      *
      * @return string
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
+    }
+
+    /**
+     * Set ref
+     *
+     * @param string $ref
+     *
+     * @return Tache
+     */
+    public function setRef($ref)
+    {
+        $this->ref = $ref;
+
+        return $this;
+    }
+
+    /**
+     * Get ref
+     *
+     * @return string
+     */
+    public function getRef()
+    {
+        return $this->ref;
     }
 
     /**
@@ -124,7 +162,7 @@ class Tache
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
@@ -139,6 +177,30 @@ class Tache
     }
 
     /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return Tache
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -148,7 +210,7 @@ class Tache
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-    
+
         return $this;
     }
 
@@ -172,7 +234,7 @@ class Tache
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-    
+
         return $this;
     }
 
@@ -196,7 +258,7 @@ class Tache
     public function setProjet(\AppBundle\Entity\Projet $projet = null)
     {
         $this->projet = $projet;
-    
+
         return $this;
     }
 
@@ -220,7 +282,7 @@ class Tache
     public function setCfc(\AppBundle\Entity\Cfc $cfc = null)
     {
         $this->cfc = $cfc;
-    
+
         return $this;
     }
 
@@ -232,29 +294,5 @@ class Tache
     public function getCfc()
     {
         return $this->cfc;
-    }
-
-    /**
-     * Set active
-     *
-     * @param boolean $active
-     *
-     * @return Tache
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-    
-        return $this;
-    }
-
-    /**
-     * Get active
-     *
-     * @return boolean
-     */
-    public function getActive()
-    {
-        return $this->active;
     }
 }

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Tache list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Ref</th>
+                <th>Description</th>
+                <th>Active</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tache in taches %}
+            <tr>
+                <td><a href="{{ path('tache_show', { 'id': tache.id }) }}">{{ tache.id }}</a></td>
+                <td>{{ tache.name }}</td>
+                <td>{{ tache.ref }}</td>
+                <td>{{ tache.description }}</td>
+                <td>{% if tache.active %}Yes{% else %}No{% endif %}</td>
+                <td>{% if tache.createdAt %}{{ tache.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if tache.updatedAt %}{{ tache.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tache_show', { 'id': tache.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tache_edit', { 'id': tache.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tache_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

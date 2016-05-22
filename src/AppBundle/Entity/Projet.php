@@ -75,6 +75,13 @@ class Projet
      */
     private $taches;
 
+
+    public function __toString()
+    {
+       return $this->name;
+    }
+
+
     /**
      * Constructor
      */

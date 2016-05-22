@@ -15,7 +15,9 @@ class Builder implements ContainerAwareInterface
         $menu = $factory->createItem('root');
         $menu->addChild('Home', array('route' => 'homepage'));
         $menu->addChild('Admin', array('route' => 'admin_homepage'));
-        $menu['Admin']->addChild('Test 1', array('route' => 'admin_test1'));
+        $menu['Admin']->addChild('charge excel cfc', array('route' => 'admin_xcl_cfc'));
+        $menu['Admin']->addChild('charge excel projet', array('route' => 'admin_xcl_projet'));
+        $menu['Admin']->addChild('charge excel tache', array('route' => 'admin_xcl_tache'));
         return $menu;
     }
 }

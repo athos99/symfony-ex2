@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Entity\Cfc;
 use AppBundle\Repository\CfcRepository;
 use AppBundle\Repository\ProjetRepository;
+use AppBundle\Repository\TacheRepository;
 use AppBundle\Utils\Util;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -25,29 +26,27 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render(
-            'default/index.html.twig',
-            [
-                'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..') . ' for admin',
-            ]
-        );
+        return $this->render('admin/index.html.twig', []);
     }
 
 
     /**
-     * @Route("/test1", name="admin_test1")
+     * @Route("/xclcfc", name="admin_xcl_cfc")
      */
-    public function test1Action(Request $request)
+    public function xclCfcAction(Request $request)
     {
 
         $data = Util::loadExcel('cfc.xlsx');
-        $tree = Util::buildTree($data, '',
+        $tree = Util::buildTree(
+            $data,
+            '',
             function ($element) {
                 return $element['ref'];
             },
             function ($element) {
                 return substr($element['ref'], 0, strripos($element['ref'], '.'));
-            });
+            }
+        );
 
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
@@ -63,9 +62,10 @@ class DefaultController extends Controller
             array(
                 'decorate' => true,
                 'representationField' => 'slug',
-                'html' => true
+                'html' => true,
             )
         );
+
         return $this->render(
             'admin/test1.html.twig',
             [
@@ -78,9 +78,9 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/test2", name="admin_test2")
+     * @Route("/xclprojet", name="admin_xcl_projet")
      */
-    public function test2Action(Request $request)
+    public function xclProjetAction(Request $request)
     {
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
@@ -91,5 +91,31 @@ class DefaultController extends Controller
         $repo = $em->getRepository('AppBundle:Projet');
         $repo->saveData($data);
 
+        // replace this example code with whatever you need
+        return $this->render('admin/index.html.twig', []);
+
     }
+
+    /**
+     * @Route("/xcltache", name="admin_xcl_tache")
+     */
+    public function xclTacheAction(Request $request)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        $data = Util::loadExcel('tache.xlsx');
+
+
+
+        /** @var TacheRepository $repo */
+        $repo = $em->getRepository('AppBundle:Tache');
+        $repo->saveData($data);
+
+        // replace this example code with whatever you need
+        return $this->render('admin/index.html.twig', []);
+
+    }
+
+
 }

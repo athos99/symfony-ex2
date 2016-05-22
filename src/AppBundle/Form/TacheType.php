@@ -3,10 +3,11 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RubriqueType extends AbstractType
+class TacheType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,17 +16,14 @@ class RubriqueType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lft')
-            ->add('rgt')
-            ->add('lvl')
             ->add('name')
-            ->add('title')
+            ->add('ref')
             ->add('description')
-            ->add('createdAt', 'datetime')
-            ->add('updatedAt', 'datetime')
             ->add('active')
-            ->add('root')
-            ->add('parent')
+            ->add('createdAt', DateTimeType::class)
+            ->add('updatedAt', DateTimeType::class)
+            ->add('projet')
+            ->add('cfc')
         ;
     }
     
@@ -35,7 +33,7 @@ class RubriqueType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Rubrique'
+            'data_class' => 'AppBundle\Entity\Tache'
         ));
     }
 }

@@ -10,6 +10,7 @@ class TestForm
     protected $name;
     protected $ref;
     protected $active;
+    protected $hidden;
 
     /**
      * @Assert\Choice(
@@ -51,5 +52,14 @@ class TestForm
     {
         $this->ref = $ref;
         return $this;
+    }
+
+    public function setHidden($hidden) {
+        $this->hidden = $hidden;
+        return $this;
+    }
+
+    public function getHidden() {
+        return $this->hidden;
     }
 }

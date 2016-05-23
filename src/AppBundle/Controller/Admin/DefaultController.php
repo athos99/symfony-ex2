@@ -2,7 +2,11 @@
 
 namespace AppBundle\Controller\Admin;
 
-use AppBundle\Entity\Cfc;
+use AppBundle\Entity\RechercheProjet;
+use AppBundle\Entity\TestForm;
+use AppBundle\Form\RechercheProjetType;
+
+use AppBundle\Form\TestFormType;
 use AppBundle\Repository\CfcRepository;
 use AppBundle\Repository\ProjetRepository;
 use AppBundle\Repository\TacheRepository;
@@ -107,13 +111,56 @@ class DefaultController extends Controller
         $data = Util::loadExcel('tache.xlsx');
 
 
-
         /** @var TacheRepository $repo */
         $repo = $em->getRepository('AppBundle:Tache');
         $repo->saveData($data);
 
         // replace this example code with whatever you need
         return $this->render('admin/index.html.twig', []);
+
+    }
+
+
+
+    /**
+     * @Route("/test_form", name="admin_test_form")
+     */
+    public function testFormAction(Request $request)
+    {
+        $testForm = new TestForm();
+        $form = $this->createForm(TestFormType::class, $testForm);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            var_dump($testForm);
+//        return $this->redirectToRoute('tache_edit', array('id' => $tache->getId()));
+        }
+
+        return $this->render('form/default.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+
+    }
+
+
+
+    /**
+     * @Route("/recherche_projet", name="admin_recherche_projet")
+     */
+    public function searchProjetAction(Request $request)
+    {
+        $rechercheProjet = new RechercheProjet();
+        $form = $this->createForm(RechercheProjetType::class, $rechercheProjet);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            var_dump($rechercheProjet);
+//        return $this->redirectToRoute('tache_edit', array('id' => $tache->getId()));
+        }
+
+        return $this->render('form/default.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
 
     }
 

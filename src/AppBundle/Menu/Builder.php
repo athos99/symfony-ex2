@@ -15,9 +15,14 @@ class Builder implements ContainerAwareInterface
         $menu = $factory->createItem('root');
         $menu->addChild('Home', array('route' => 'homepage'));
         $menu->addChild('Admin', array('route' => 'admin_homepage'));
-        $menu['Admin']->addChild('charge excel cfc', array('route' => 'admin_xcl_cfc'));
-        $menu['Admin']->addChild('charge excel projet', array('route' => 'admin_xcl_projet'));
-        $menu['Admin']->addChild('charge excel tache', array('route' => 'admin_xcl_tache'));
+        if ( $this->container->get('kernel')->getEnvironment() == 'dev') {
+            $menu['Admin']->addChild('charge excel cfc', array('route' => 'admin_xcl_cfc'));
+            $menu['Admin']->addChild('charge excel projet', array('route' => 'admin_xcl_projet'));
+            $menu['Admin']->addChild('charge excel tache', array('route' => 'admin_xcl_tache'));
+            $menu['Admin']->addChild('Test forme', array('route' => 'admin_test_form'));
+
+        }
+        $menu['Admin']->addChild('Recherche projet', array('route' => 'admin_recherche_projet'));
         return $menu;
     }
 }

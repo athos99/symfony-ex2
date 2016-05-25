@@ -10,7 +10,9 @@
 {% block head_script %}
     {% javascripts
     'jquery/dist/jquery.min.js'
-    '@MopaBootstrapBundle/Resources/public/bootstrap/dist/js/bootstrap.min.js' %}
+    '@MopaBootstrapBundle/Resources/public/bootstrap/dist/js/bootstrap.min.js'
+    '@AppBundle/Resources/js/typeahead.bundle.js'
+    %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

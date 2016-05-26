@@ -12,6 +12,9 @@ class TestForm
     protected $active;
     protected $hidden;
 
+
+    public $url='/';
+
     /**
      * @Assert\Choice(
      *     choices = { "oui", "non", "-" },

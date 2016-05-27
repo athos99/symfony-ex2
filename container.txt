@@ -6,6 +6,7 @@ Symfony Container Public Services
   Service ID                                                           Class name                                                                                  
  -------------------------------------------------------------------- -------------------------------------------------------------------------------------------- 
   annotation_reader                                                    Doctrine\Common\Annotations\CachedReader                                                    
+  app.autocomplete_type_extension                                      AppBundle\Form\Extension\AutocompleteTypeExtension                                          
   assetic.asset_manager                                                Assetic\Factory\LazyAssetManager                                                            
   assetic.controller                                                   Symfony\Bundle\AsseticBundle\Controller\AsseticController                                   
   assetic.filter.cssrewrite                                            Assetic\Filter\CssRewriteFilter                                                             

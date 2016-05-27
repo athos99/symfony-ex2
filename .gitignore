@@ -18,3 +18,4 @@
 composer.lock
 *.php~
 web/css/
+web/js/

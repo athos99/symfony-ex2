@@ -135,8 +135,10 @@ class DefaultController extends Controller
 //        return $this->redirectToRoute('tache_edit', array('id' => $tache->getId()));
         }
 
-        return $this->render('form/default.html.twig', array(
-            'form' => $form->createView(),
+        $f= $form->createView();
+        return $this->render('default/form.html.twig', array(
+//            'form' => $form->createView(),
+            'form' => $f,
         ));
 
 
@@ -157,7 +159,7 @@ class DefaultController extends Controller
 //        return $this->redirectToRoute('tache_edit', array('id' => $tache->getId()));
         }
 
-        return $this->render('form/default.html.twig', array(
+        return $this->render('default/form.html.twig', array(
             'form' => $form->createView(),
         ));
 

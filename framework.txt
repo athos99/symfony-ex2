@@ -1,0 +1,161 @@
+# Default configuration for extension with alias: "framework"
+framework:
+    secret:               ~
+
+    # Set true to enable support for the '_method' request parameter to determine the intended HTTP method on POST requests. Note: When using the HttpCache, you need to call the method in your front controller instead
+    http_method_override:  true
+    trusted_proxies:      []
+    ide:                  null
+    test:                 ~
+    default_locale:       en
+    trusted_hosts:        []
+    csrf_protection:
+        enabled:              false
+
+    # form configuration
+    form:
+        enabled:              false
+        csrf_protection:
+            enabled:              null
+            field_name:           _token
+
+    # esi configuration
+    esi:
+        enabled:              false
+
+    # ssi configuration
+    ssi:
+        enabled:              false
+
+    # fragments configuration
+    fragments:
+        enabled:              false
+        path:                 /_fragment
+
+    # profiler configuration
+    profiler:
+        enabled:              false
+        collect:              true
+        only_exceptions:      false
+        only_master_requests:  false
+        dsn:                  'file:%kernel.cache_dir%/profiler'
+        matcher:
+
+            # use the urldecoded format
+            path:                 ~ # Example: ^/path to resource/
+            service:              ~
+            ips:                  []
+
+    # router configuration
+    router:
+        resource:             ~ # Required
+        type:                 ~
+        http_port:            80
+        https_port:           443
+
+        # set to true to throw an exception when a parameter does not match the requirements
+        # set to false to disable exceptions when a parameter does not match the requirements (and return null instead)
+        # set to null to disable parameter checks against requirements
+        # 'true' is the preferred configuration in development mode, while 'false' or 'null' might be preferred in production
+        strict_requirements:  true
+
+    # session configuration
+    session:
+        storage_id:           session.storage.native
+        handler_id:           session.handler.native_file
+        name:                 ~
+        cookie_lifetime:      ~
+        cookie_path:          ~
+        cookie_domain:        ~
+        cookie_secure:        ~
+        cookie_httponly:      true
+        use_cookies:          ~
+        gc_divisor:           ~
+        gc_probability:       1
+        gc_maxlifetime:       ~
+        save_path:            '%kernel.cache_dir%/sessions'
+
+        # seconds to wait between 2 session metadata updates, it will also prevent the session handler to write if the session has not changed
+        metadata_update_threshold:  '0'
+
+    # request configuration
+    request:
+        formats:
+
+            # Prototype
+            name:                 []
+
+    # templating configuration
+    templating:
+        hinclude_default_template:  null
+        cache:                ~
+        form:
+            resources:
+
+                # Default:
+                - FrameworkBundle:Form
+        engines:              # Required
+
+            # Example:
+            - twig
+        loaders:              []
+
+    # assets configuration
+    assets:
+        version:              null
+        version_format:       '%%s?%%s'
+        base_path:            ''
+        base_urls:            []
+        packages:
+
+            # Prototype
+            name:
+                version:              ~
+                version_format:       null
+                base_path:            ''
+                base_urls:            []
+
+    # translator configuration
+    translator:
+        enabled:              false
+        fallbacks:
+
+            # Default:
+            - en
+        logging:              true
+        paths:                []
+
+    # validation configuration
+    validation:
+        enabled:              false
+        cache:                ~
+        enable_annotations:   false
+        static_method:
+
+            # Default:
+            - loadValidatorMetadata
+        translation_domain:   validators
+        strict_email:         false
+
+    # annotation configuration
+    annotations:
+        cache:                file
+        file_cache_dir:       '%kernel.cache_dir%/annotations'
+        debug:                true
+
+    # serializer configuration
+    serializer:
+        enabled:              false
+        enable_annotations:   false
+        cache:                ~
+        name_converter:       ~
+
+    # Property access configuration
+    property_access:
+        magic_call:           false
+        throw_exception_on_invalid_index:  false
+
+    # Property info configuration
+    property_info:
+        enabled:              false
+

@@ -20,23 +20,15 @@ class AutocompleteTypeExtension extends AbstractTypeExtension
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefined(array('query'));
+        $resolver->setDefined(array('autocomplete'));
     }
 
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if (array_key_exists('query', $options)) {
-            $parentData = $form->getParent()->getData();
-
-            if (null !== $parentData) {
-                $accessor = PropertyAccess::createPropertyAccessor();
-                $query = $accessor->getValue($parentData, $options['query']);
-            } else {
-                $query = null;
-            }
-
-            $view->vars['query'] = $query;
+        if (array_key_exists('autocomplete', $options)) {
+            $view->vars['autocomplete'] = true;
+            
         }
     }
 

@@ -6,3 +6,9 @@
     aaaaa
 {% endblock button_widget %}
 
+
+{%- block form_widget_simple -%}
+    {{ dump(form) }}
+    {%- set type = type|default('text') -%}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{%- endblock form_widget_simple -%}

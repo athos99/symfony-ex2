@@ -13,7 +13,7 @@ class TestForm
     protected $hidden;
 
 
-    public $url='/';
+    protected $url='/';
 
     /**
      * @Assert\Choice(
@@ -24,6 +24,8 @@ class TestForm
     protected $ouiNon;
 
 
+  
+    
     public function getOuiNon()
     {
         return $this->ouiNon;

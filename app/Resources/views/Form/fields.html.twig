@@ -6,32 +6,30 @@
 {%- block form_widget_simple -%}
     {% if autocomplete is defined %}
         {{ dump(attr.class) }}
-        {% set attr = attr | merge({'class':((attr.class is defined) ? attr.class : '') ~' typeahead'}) %}
-        {{ dump(attr.class) }}
-        {{ dump(form) }}
         {{ dump(autocomplete) }}
         {{ dump(autocomplete.url_query) }}
         {{ parent() }}
 
         <script type="text/javascript">
-            var {{ id }} =
-            new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                prefetch: '../data//{{ id }}',
-                remote: {
-                    url: '{{ autocomplete.url_query }}',
-                    wildcard: '{{ autocomplete.wildcard }}'
-                }
+            $(document).ready(function() {
+                var {{ id }} =
+                new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    prefetch: '../data//{{ id }}',
+                    remote: {
+                        url: '{{ autocomplete.url_query }}',
+                        wildcard: '{{ autocomplete.wildcard }}'
+                    }
+                });
+
+
+                $('#remote .typeahead').typeahead(null, {
+                    name: 'best-pictures',
+                    display: 'value',
+                    source: {{ id }}
+                });
             });
-
-
-            $('#remote .typeahead').typeahead(null, {
-                name: 'best-pictures',
-                display: 'value',
-                source: {{ id }}
-            });
-
         </script>
     {% endif %}
 {%- endblock form_widget_simple -%}

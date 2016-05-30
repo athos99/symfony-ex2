@@ -28,7 +28,7 @@ class AutocompleteTypeExtension extends AbstractTypeExtension
     {
         if (array_key_exists('autocomplete', $options)) {
             $view->vars['autocomplete'] = $options['autocomplete'];
-            
+            $view->vars['attr']['class'] = (isset($view->vars['attr']['class']) ? $view->vars['attr']['class'] : '').' typeahead';
         }
     }
 

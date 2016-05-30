@@ -27,7 +27,7 @@ class AutocompleteTypeExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         if (array_key_exists('autocomplete', $options)) {
-            $view->vars['autocomplete'] = true;
+            $view->vars['autocomplete'] = $options['autocomplete'];
             
         }
     }

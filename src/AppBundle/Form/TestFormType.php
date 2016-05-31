@@ -22,7 +22,7 @@ class TestFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',TextType::class, ['autocomplete'=>['url_query'=>'/ajax/auto/%query','wildcard'=>'%query'],'attr'=>['class'=>'zzzz']])
+            ->add('name',TextType::class, ['autocomplete'=>['route'=>'ajax_autocomplete','wildcard'=>'q'],'attr'=>['class'=>'zzzz']])
             ->add('ref',TextType::class)
             ->add('ouiNon')
             ->add('recherche', SubmitType::class)

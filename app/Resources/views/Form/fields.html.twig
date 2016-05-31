@@ -4,32 +4,34 @@
 
 
 {%- block form_widget_simple -%}
+    {{ parent() }}
     {% if autocomplete is defined %}
-        {{ dump(attr.class) }}
-        {{ dump(autocomplete) }}
-        {{ dump(autocomplete.url_query) }}
-        {{ parent() }}
-
+        <input type="hidden" id="language_language" name="language[language]" required="required" placeholder="Start typing" class="form-control" />
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var {{ id }} =
                 new Bloodhound({
                     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
-                    prefetch: '../data//{{ id }}',
                     remote: {
-                        url: '{{ autocomplete.url_query }}',
-                        wildcard: '{{ autocomplete.wildcard }}'
+                        {% set q =  autocomplete.wildcard %}
+                        url: '{{ url(autocomplete.route, { q: ':query' }) }}',
+                        wildcard: '{{ ':query' }}'
                     }
                 });
 
-
-                $('#remote .typeahead').typeahead(null, {
-                    name: 'best-pictures',
-                    display: 'value',
-                    source: {{ id }}
+var key='id';
+                $('#{{ id }}').typeahead(
+                        {minLength: 1},
+                        {source: {{ id }}, display: 'name'}
+                ).bind('typeahead:selected', function (e, item) {
+                    $('#language_language').val( key ? item[key] : item);
+                }).bind('typeahead:autocomplete', function (e, item) {
+                    $('#language_language').val( key ? item[key] : item);
                 });
+                ;
             });
         </script>
     {% endif %}
 {%- endblock form_widget_simple -%}
+

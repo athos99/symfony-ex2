@@ -18,8 +18,8 @@
                     }
                 });
                 var $t = $('#{{ id }}').typeahead({
-                    minLength:  {% if autocomplete.minLenght is defined %} {{ autocomplete.minLenght }} {% else %} 1 {% endif %},
-                    highlight:  {% if autocomplete.highlight is defined %} {{ autocomplete.highlight }} {% else %} true {% endif %}
+                    minLength:  {% if autocomplete.minLength is defined %} {{ autocomplete.minLength }} {% else %} 1 {% endif %},
+                    highlight:  {% if autocomplete.highlight is defined %} {{ autocomplete.highlight ? 'true' : 'false' }} {% else %} true {% endif %}
                 }, {
                     source: {{ id }},
                     limit:  {% if autocomplete.limit is defined %} {{ autocomplete.limit }} {% else %} 5 {% endif %}

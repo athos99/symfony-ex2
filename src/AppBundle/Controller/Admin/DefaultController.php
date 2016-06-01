@@ -155,7 +155,7 @@ class DefaultController extends Controller
         $form = $this->createForm(RechercheProjetType::class, $rechercheProjet);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            var_dump($rechercheProjet);
+            dump($rechercheProjet);
 //        return $this->redirectToRoute('tache_edit', array('id' => $tache->getId()));
         }
 

@@ -6,30 +6,37 @@
 {%- block form_widget_simple -%}
     {{ parent() }}
     {% if autocomplete is defined %}
-        <input type="hidden" id="language_language" name="language[language]" required="required" placeholder="Start typing" class="form-control" />
         <script type="text/javascript">
             $(document).ready(function () {
                 var {{ id }} =
                 new Bloodhound({
-                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+                    datumTokenizer: Bloodhound.tokenizers.whitespace,
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
                     remote: {
-                        {% set q =  autocomplete.wildcard %}
-                        url: '{{ url(autocomplete.route, { q: ':query' }) }}',
+                        url: '{{ url(autocomplete.route, { (autocomplete.search): ':query' }) }}',
                         wildcard: '{{ ':query' }}'
                     }
                 });
-
-var key='id';
-                $('#{{ id }}').typeahead(
-                        {minLength: 1},
-                        {source: {{ id }}, display: 'name'}
-                ).bind('typeahead:selected', function (e, item) {
-                    $('#language_language').val( key ? item[key] : item);
-                }).bind('typeahead:autocomplete', function (e, item) {
-                    $('#language_language').val( key ? item[key] : item);
+                var $t = $('#{{ id }}').typeahead({
+                    minLength:  {% if autocomplete.minLenght is defined %} {{ autocomplete.minLenght }} {% else %} 1 {% endif %},
+                    highlight:  {% if autocomplete.highlight is defined %} {{ autocomplete.highlight }} {% else %} true {% endif %}
+                }, {
+                    source: {{ id }},
+                    limit:  {% if autocomplete.limit is defined %} {{ autocomplete.limit }} {% else %} 5 {% endif %}
+                    {% if autocomplete.display is defined %}, display: '{{ autocomplete.display }}' {% endif %}
                 });
-                ;
+                {% if autocomplete.key is defined and autocomplete.input_key is defined %}
+                var $input_key = $("input[name='{{ autocomplete.input_key }}']");
+                $t.bind('typeahead:selected', function (e, item) {
+                    $input_key.val(item['{{ autocomplete.key }}']);
+                });
+                $t.bind('typeahead:autocomplete', function (e, item) {
+                    $input_key.val(item['{{ autocomplete.key }}']);
+                });
+                $t.bind('typeahead:change', function (e, item) {
+                    $input_key.val(item['{{ autocomplete.key }}']);
+                });
+                {% endif %}
             });
         </script>
     {% endif %}

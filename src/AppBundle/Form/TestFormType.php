@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Form;
+
 use AppBundle\Entity\TestForm;
 use AppBundle\Form\Extension\AutocompleteTypeExtension;
 use Symfony\Component\Form\AbstractType;
@@ -22,16 +23,31 @@ class TestFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',TextType::class, ['autocomplete'=>['route'=>'ajax_autocomplete','wildcard'=>'q'],'attr'=>['class'=>'zzzz']])
-            ->add('ref',TextType::class)
+            ->add('ref', TextType::class, [
+                'label' => 'autocomplete 1)',
+                'autocomplete' => ['route' => 'ajax_autocomplete', 'search' => 'q', 'display' => 'name']
+            ])
+            ->add('myId', TextType::class,
+                ['label' => 'autocomplete2 id (readonly)', 'attr' => ['readonly' => 'readonly']])
+            ->add('name', TextType::class, [
+                'label' => 'autocomplete2',
+                'autocomplete' => [
+                    'route' => 'ajax_autocomplete',
+                    'search' => 'q',
+                    'display' => 'name',
+                    'key' => 'id',
+                    'input_key' => 'test_form[myId]',
+                    'highlight' => false,
+                ],
+                'attr' => ['class' => 'zzzz']
+            ])
             ->add('ouiNon')
             ->add('recherche', SubmitType::class)
             ->add('button1', ButtonType::class)
-            ->add('succes', ButtonType::class,['attr'=>['class'=>'btn-success']])
-            ->add('danger', ButtonType::class,['attr'=>['class'=>'btn-danger']])
-        ;
+            ->add('succes', ButtonType::class, ['attr' => ['class' => 'btn-success']])
+            ->add('danger', ButtonType::class, ['attr' => ['class' => 'btn-danger']]);
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

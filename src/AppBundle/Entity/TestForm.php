@@ -2,6 +2,7 @@
 
 
 namespace AppBundle\Entity;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,7 +14,6 @@ class TestForm
     protected $hidden;
 
 
-    protected $url='/';
 
     /**
      * @Assert\Choice(
@@ -24,8 +24,20 @@ class TestForm
     protected $ouiNon;
 
 
-  
-    
+    protected $myId;
+
+    public function getMyId()
+    {
+        return $this->myId;
+    }
+
+    public function setMyId($id)
+    {
+        $this->myId = $id;
+        return $this;
+    }
+
+
     public function getOuiNon()
     {
         return $this->ouiNon;
@@ -59,12 +71,14 @@ class TestForm
         return $this;
     }
 
-    public function setHidden($hidden) {
+    public function setHidden($hidden)
+    {
         $this->hidden = $hidden;
         return $this;
     }
 
-    public function getHidden() {
+    public function getHidden()
+    {
         return $this->hidden;
     }
 }

@@ -10,9 +10,14 @@
             $(document).ready(function () {
                 var {{ id }} =
                 new Bloodhound({
-                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+                    {% if autocomplete.display is defined %}
+                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('{{ autocomplete.display }}'),
+                    {% else %}
+                    datumTokenizer: Bloodhound.tokenizers.whitespace,
+                    {% endif %}
+
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
-prefetch : '{{ url(autocomplete.route, { (autocomplete.search): 'p' }) }}',
+                    prefetch: '{{ url(autocomplete.route) }}',
                     remote: {
                         url: '{{ url(autocomplete.route, { (autocomplete.search): ':query' }) }}',
                         wildcard: '{{ ':query' }}'
@@ -20,7 +25,7 @@ prefetch : '{{ url(autocomplete.route, { (autocomplete.search): 'p' }) }}',
                 });
                 var $t = $('#{{ id }}').typeahead({
                     minLength:  {% if autocomplete.minLength is defined %} {{ autocomplete.minLength }} {% else %} 1 {% endif %},
-                    highlight:  {% if autocomplete.highlight is defined %} {{ autocomplete.highlight ? 'true' : 'false' }} {% else %} true {% endif %}
+                    highlight:  {% if autocomplete.highlight is defined %} {{ autocomplete.highlight ? 'true' : 'false' }} {% else %} false {% endif %}
                 }, {
                     source: {{ id }},
                     name: "{{ id }}",

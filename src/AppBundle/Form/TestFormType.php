@@ -29,6 +29,7 @@ class TestFormType extends AbstractType
             ])
             ->add('myId', TextType::class,
                 ['label' => 'autocomplete2 id (readonly)', 'attr' => ['readonly' => 'readonly']])
+
             ->add('name', TextType::class, [
                 'label' => 'autocomplete2',
                 'autocomplete' => [
@@ -38,11 +39,27 @@ class TestFormType extends AbstractType
                     'key' => 'id',
                     'input_key' => 'test_form[myId]',
                     'highlight' => true,
-                    'limit' => 10,
+                    'limit' => 5,
                     'minLength'=>1
                 ],
                 'attr' => ['class' => 'zzzz']
             ])
+
+
+//            ->add('name', TextType::class, [
+//                'label' => 'autocomplete2',
+//                'autocomplete' => [
+//                    'route' => 'ajax_autocomplete',
+//                    'search' => 'q',
+//                    'display' => 'name',
+//                    'key' => 'id',
+//                    'input_key' => 'test_form[myId]',
+//                    'highlight' => true,
+//                    'limit' => 5,
+//                    'minLength'=>1
+//                ],
+//                'attr' => ['class' => 'zzzz']
+//            ])
             ->add('ouiNon')
             ->add('recherche', SubmitType::class)
             ->add('button1', ButtonType::class)

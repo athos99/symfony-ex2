@@ -10,8 +10,9 @@
             $(document).ready(function () {
                 var {{ id }} =
                 new Bloodhound({
-                    datumTokenizer: Bloodhound.tokenizers.whitespace,
+                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
+prefetch : '{{ url(autocomplete.route, { (autocomplete.search): 'p' }) }}',
                     remote: {
                         url: '{{ url(autocomplete.route, { (autocomplete.search): ':query' }) }}',
                         wildcard: '{{ ':query' }}'
@@ -22,6 +23,7 @@
                     highlight:  {% if autocomplete.highlight is defined %} {{ autocomplete.highlight ? 'true' : 'false' }} {% else %} true {% endif %}
                 }, {
                     source: {{ id }},
+                    name: "{{ id }}",
                     limit:  {% if autocomplete.limit is defined %} {{ autocomplete.limit }} {% else %} 5 {% endif %}
                     {% if autocomplete.display is defined %}, display: '{{ autocomplete.display }}' {% endif %}
                 });

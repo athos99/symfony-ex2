@@ -37,8 +37,8 @@ class TestFormType extends AbstractType
                     'display' => 'name',
                     'key' => 'id',
                     'input_key' => 'test_form[myId]',
-                    'highlight' => false,
-                    'limit' => 12,
+                    'highlight' => true,
+                    'limit' => 10,
                     'minLength'=>1
                 ],
                 'attr' => ['class' => 'zzzz']

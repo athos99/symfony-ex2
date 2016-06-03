@@ -10,6 +10,21 @@
     "autoload-dev": {
         "psr-4": { "Tests\\": "tests/" }
     },
+
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "jquery/jquery",
+                "version": "2.2.4",
+                "dist": {
+                    "url": "https://code.jquery.com/jquery-2.2.4.js",
+                    "type": "file"
+                }
+            }
+        }
+    ],
+
     "require": {
         "php": ">=5.5.9",
         "symfony/symfony": "3.0.*",
@@ -27,8 +42,13 @@
         "knplabs/knp-menu-bundle": "^2.0",
         "phpoffice/phpexcel":"1.8",
         "knplabs/knp-paginator-bundle" : "^2.5",
-        "mopa/bootstrap-bundle": "^3.0"
-
+        "mopa/bootstrap-bundle": "^3.0",
+        "braincrafted/bootstrap-bundle": "~2.2",
+        "components/jquery" : "~2.2.4",
+        "oyejorge/less.php": "~1.7",
+        "leafo/scssphp": "*",
+        "afarkas/html5shiv": "^3.7.3",
+        "rogeriopradoj/respond": "^1.4.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

@@ -1,0 +1,91 @@
+<!-- app/Resources/views/layout.html.twig -->
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+{% block head %}
+    <head>
+        <meta charset="{{ _charset }}"/>
+        {% block head_top %}
+        {% endblock head_top %}
+        <title>{% block title %}Mon appli{% endblock title %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block head_script %}
+            {% include 'ie8-support.html.twig' %}
+            <script src="{{ asset('js/jquery.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.js') }}"></script>
+        {% endblock head_script %}
+        {% block head_css %}
+            <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+        {% endblock head_css %}
+        {% block style %}
+        {% endblock style %}
+        {% block favicon %}
+            <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />{% endblock %}
+        {% block head_bottom %}
+        {% endblock head_bottom %}
+    </head>
+{% endblock head %}
+<body>
+{% block body_start %}
+{% endblock body_start %}
+{% block body %}
+    {% block navbar %}
+    {% endblock navbar %}
+    {% block container %}
+        {% block container_div_start %}<div class="{% block container_class %}container{% endblock container_class %}">{% endblock container_div_start %}
+        {% block header %}
+        {% endblock header %}
+    {% block content_div_start %}
+        <div class="content">
+    {% endblock content_div_start %}
+        {% block page_header %}
+            <div class="page-header">
+                <h1>{% block headline %}{% endblock headline %}</h1>
+            </div>
+        {% endblock page_header %}
+        {% block flashes %}
+            {% if app.session.flashbag.peekAll|length > 0 %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        {% include 'flash.html.twig' %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock flashes %}
+        {% block content_row %}
+            <div class="row">
+                {% block content %}
+                    <div class="col-sm-9">
+                        {% block content_content %}
+                        {% endblock content_content %}
+                    </div>
+                    <div class="col-sm-3">
+                        {% block content_sidebar %}
+                            <h2>Sidebar</h2>
+                        {% endblock content_sidebar %}
+                    </div>
+                {% endblock content %}
+            </div>
+        {% endblock content_row %}
+
+    {% block content_div_end %}</div>{% endblock content_div_end %}
+
+    {% block footer_tag_start %}
+        <footer>
+    {% endblock footer_tag_start %}
+        {% block footer %}
+        {% endblock footer %}
+    {% block footer_tag_end %}
+        </footer>
+    {% endblock footer_tag_end %}
+        {% block container_div_end %}
+            </div><!-- /container -->
+        {% endblock container_div_end %}
+    {% endblock container %}
+    {% block script %}
+    {% endblock script %}
+    {% block body_end %}
+    {% endblock body_end %}
+
+{% endblock body %}
+</body>
+</html>

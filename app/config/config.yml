@@ -37,9 +37,8 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
+        - BraincraftedBootstrapBundle:Form:bootstrap.html.twig
         - form/fields.html.twig
-
-
 
 
 
@@ -66,11 +65,13 @@ assetic:
 knp_menu:
     # use "twig: false" to disable the Twig extension and the TwigRenderer
     twig:
-        template: knp_menu.html.twig
+        template: BraincraftedBootstrapBundle:Menu:bootstrap.html.twig
     #  if true, enables the helper for PHP templates
     templating: false
     # the renderer to use, list is also available by default
     default_renderer: twig
+
+
 
 
 knp_paginator:
@@ -98,7 +99,7 @@ braincrafted_bootstrap:
     fonts_dir: %kernel.root_dir%/../web/fonts
     auto_configure:
         assetic: true
-        twig: true
+        twig: false
         knp_menu: true
         knp_paginator: true
     customize:

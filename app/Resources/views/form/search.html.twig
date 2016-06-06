@@ -1,0 +1,8 @@
+{# app/Resources/views/form/search.html.twig #}
+{% block search %}
+    {{ dump('search.html.twig') }}
+    {{ form_start(searchForm) }}
+    <div class="input-group">
+        {{ form_widget(searchForm.query) }}
+    </div>
+{% endblock %}

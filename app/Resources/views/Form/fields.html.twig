@@ -1,51 +1,95 @@
 {% extends 'bootstrap_3_layout.html.twig' %}
 
 
-
-
 {%- block form_widget_simple -%}
-    {{ parent() }}
-    {% if autocomplete is defined %}
-        <script type="text/javascript">
-            $(document).ready(function () {
-                var {{ id }} =
-                new Bloodhound({
-                    {% if autocomplete.display is defined %}
-                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('{{ autocomplete.display }}'),
-                    {% else %}
-                    datumTokenizer: Bloodhound.tokenizers.whitespace,
-                    {% endif %}
+    {% if input_group is defined %}
+    <div class="input-group">
+        {% endif %}
+        {% if input_group.button_prepend is defined %}
+            <span class="input-group-btn">{{ form_widget(input_group.button_prepend) }}</span>
+        {% endif %}
+        {{ parent() }}
+        {% if input_group.button_append is defined %}
+            <div class="input-group-btn">{{ form_widget(input_group.button_append) }}</div>
+        {% endif %}
+        {% if input_group is defined %}
+    </div>
+    {% endif %}
 
-                    queryTokenizer: Bloodhound.tokenizers.whitespace,
-                    prefetch: '{{ url(autocomplete.route) }}',
-                    remote: {
-                        url: '{{ url(autocomplete.route, { (autocomplete.search): ':query' }) }}',
-                        wildcard: '{{ ':query' }}'
-                    }
+    {% if autocomplete is defined %}
+        {% spaceless %}
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var {{ id }} =
+                    new Bloodhound({
+                        {% if autocomplete.display is defined %}
+                        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('{{ autocomplete.display }}'),
+                        {% else %}
+                        datumTokenizer: Bloodhound.tokenizers.whitespace,
+                        {% endif %}
+
+                        queryTokenizer: Bloodhound.tokenizers.whitespace,
+                        prefetch: '{{ url(autocomplete.route) }}',
+                        remote: {
+                            url: '{{ url(autocomplete.route, { (autocomplete.search): ':query' }) }}',
+                            wildcard: '{{ ':query' }}'
+                        }
+                    });
+                    var $t = $('#{{ id }}').typeahead({
+                        minLength:  {% if autocomplete.minLength is defined %} {{ autocomplete.minLength }} {% else %} 1 {% endif %},
+                        highlight:  {% if autocomplete.highlight is defined %} {{ autocomplete.highlight ? 'true' : 'false' }} {% else %} false {% endif %}
+                    }, {
+                        source: {{ id }},
+                        name: "{{ id }}",
+                        limit:  {% if autocomplete.limit is defined %} {{ autocomplete.limit }} {% else %} 5 {% endif %}
+                        {% if autocomplete.display is defined %}, display: '{{ autocomplete.display }}' {% endif %}
+                    });
+                    {% if autocomplete.key is defined and autocomplete.input_key is defined %}
+                    var $input_key = $("input[name='{{ autocomplete.input_key }}']");
+                    $t.bind('typeahead:selected', function (e, item) {
+                        $input_key.val(item['{{ autocomplete.key }}']);
+                    });
+                    $t.bind('typeahead:autocomplete', function (e, item) {
+                        $input_key.val(item['{{ autocomplete.key }}']);
+                    });
+                    $t.bind('typeahead:change', function (e, item) {
+                        $input_key.val(item['{{ autocomplete.key }}']);
+                    });
+                    {% endif %}
                 });
-                var $t = $('#{{ id }}').typeahead({
-                    minLength:  {% if autocomplete.minLength is defined %} {{ autocomplete.minLength }} {% else %} 1 {% endif %},
-                    highlight:  {% if autocomplete.highlight is defined %} {{ autocomplete.highlight ? 'true' : 'false' }} {% else %} false {% endif %}
-                }, {
-                    source: {{ id }},
-                    name: "{{ id }}",
-                    limit:  {% if autocomplete.limit is defined %} {{ autocomplete.limit }} {% else %} 5 {% endif %}
-                    {% if autocomplete.display is defined %}, display: '{{ autocomplete.display }}' {% endif %}
-                });
-                {% if autocomplete.key is defined and autocomplete.input_key is defined %}
-                var $input_key = $("input[name='{{ autocomplete.input_key }}']");
-                $t.bind('typeahead:selected', function (e, item) {
-                    $input_key.val(item['{{ autocomplete.key }}']);
-                });
-                $t.bind('typeahead:autocomplete', function (e, item) {
-                    $input_key.val(item['{{ autocomplete.key }}']);
-                });
-                $t.bind('typeahead:change', function (e, item) {
-                    $input_key.val(item['{{ autocomplete.key }}']);
-                });
-                {% endif %}
-            });
-        </script>
+            </script>
+        {% endspaceless %}
     {% endif %}
 {%- endblock form_widget_simple -%}
+
+
+
+{%- block button_widget -%}
+    {% set attr = attr|merge({class: (attr.class|default('btn-default') ~ ' btn')|trim}) %}
+    {%- if label is same as(false) -%}
+        {%- set label = '' -%}
+    {%- elseif label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+            '%name%': name,
+            '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{- block ('glyphicons') -}}{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</button>
+{%- endblock button_widget -%}
+
+{%- block glyphicons -%}
+    {% spaceless %}
+        {% if icon is defined %}
+            <span class="glyphicon glyphicon-{{ icon }}"></span>
+        {% endif %}
+    {% endspaceless %}
+{%- endblock glyphicons -%}
+
+
+
+
 

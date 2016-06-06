@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\SearchForm;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,10 +21,10 @@ class SearchFormType extends AbstractType
     {
         $builder
             ->add('id', HiddenType::class)
-            ->add(
-                'query',
+            ->add('query',
                 TextType::class,
                 [
+                    'label'=>false,
                     'autocomplete' => [
                         'route' => 'ajax_autocomplete',
                         'search' => 'q',
@@ -34,22 +35,12 @@ class SearchFormType extends AbstractType
                         'limit' => 5,
                         'minLength' => 1,
                     ],
-                    'attr' => [
-                        'input_group' => [
-                            'buttonAppend' => ['name' => 'search', 'type' => 'submit'],
-                        ],
+                    'input_group' => [
+                        'button_append' => ['name' => 'search', 'type' => SubmitType::class,  'options'=>['icon' => 'search', 'label'=>false]]
+
                     ],
                 ]
-            )
-//            ->add(
-//                'search',
-//                SubmitType::class,
-//                [
-//                    'attr' => ['class' => 'btn btn-default', 'aria-label' => 'search'],
-//                    'label' => '<span class="glyphicon glyphicon-search"></span>',
-//                ]
-//            )
-           ;
+            );
     }
 
     /**

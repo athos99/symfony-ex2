@@ -28,14 +28,13 @@ class SearchController extends Controller
         $form = $this->createForm(SearchFormType::class, $searchForm);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($searchForm);
 //        return $this->redirectToRoute('tache_edit', array('id' => $tache->getId()));
         }
 
-        return $this->render('form/search.html.twig', array(
-            'searchForm' => $form->createView(),
+        $result= $this->render('form/search.html.twig', array(
+            'form' => $form->createView(),
         ));
-
+        return $result;
 
     }
 

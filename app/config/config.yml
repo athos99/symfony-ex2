@@ -37,7 +37,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
-        - BraincraftedBootstrapBundle:Form:bootstrap.html.twig
+#        - BraincraftedBootstrapBundle:Form:bootstrap.html.twig
         - form/fields.html.twig
 
 

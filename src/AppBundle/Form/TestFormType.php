@@ -3,7 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\TestForm;
-use AppBundle\Form\Extension\AutocompleteTypeExtension;
+use AppBundle\Form\Extension\TextPlusTypeExtension;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

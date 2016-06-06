@@ -17,7 +17,6 @@
 {% endblock script %}
 
 {% block navbar %}
-    {%     if 0  %}
     <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle"
@@ -33,8 +32,6 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             {{ knp_menu_render('AppBundle:Builder:mainMenu', { 'style': 'navbar' }) }}
             {{ render(controller('AppBundle:Search:search')) }}
-            {{ knp_menu_render('AppBundle:Builder:mainMenu', { 'style': 'navbar-right' }) }}
         </div><!-- /.navbar-collapse -->
     </nav>
-        {% endif %}
 {% endblock navbar %}

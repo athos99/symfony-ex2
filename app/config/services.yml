@@ -7,8 +7,12 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-   app.autocomplete_type_extension:
-        class: AppBundle\Form\Extension\AutocompleteTypeExtension
+   app.text_plus_type_extension:
+        class: AppBundle\Form\Extension\TextPlusTypeExtension
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
+   app.button_plus_type_extension:
+        class: AppBundle\Form\Extension\ButtonPlusTypeExtension
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\ButtonType }
 

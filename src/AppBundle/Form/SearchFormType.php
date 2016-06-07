@@ -36,7 +36,9 @@ class SearchFormType extends AbstractType
                         'minLength' => 1,
                     ],
                     'input_group' => [
-                        'button_append' => ['name' => 'search', 'type' => SubmitType::class,  'options'=>['icon' => 'search', 'label'=>false]]
+                        'button_append' => ['name' => 'search',
+                            'type' => SubmitType::class,
+                            'options'=>['icon' => 'search', 'label'=>false]]
 
                     ],
                 ]

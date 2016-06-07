@@ -25,7 +25,7 @@ class SearchController extends Controller
     public function searchAction(Request $request)
     {
         $searchForm = new SearchForm();
-        $form = $this->createForm(SearchFormType::class, $searchForm);
+        $form = $this->createForm(SearchFormType::class, $searchForm, ['attr'=>['class'=>'navbar-form']]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 //        return $this->redirectToRoute('tache_edit', array('id' => $tache->getId()));

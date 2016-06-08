@@ -10,11 +10,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% block head_script %}
             {% include 'ie8-support.html.twig' %}
-            <script src="{{ asset('js/jquery.js') }}"></script>
-            <script src="{{ asset('js/bootstrap.js') }}"></script>
+            {% javascripts
+            '@AppBundle/Resources/js/jquery-2.2.4.min.js'
+            '../vendor/twbs/bootstrap/dist/js/bootstrap.min.js'
+            '@AppBundle/Resources/js/typeahead.bundle.js'
+            %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
         {% endblock head_script %}
         {% block head_css %}
-            <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+            {% stylesheets
+            '../vendor/twbs/bootstrap/dist/css/bootstrap.css' filter='cssrewrite'
+            '@AppBundle/Resources/css/typeahead.css'
+            %}
+
+            <link rel="stylesheet" href="{{ asset_url }}" media="screen"/>
+            {% endstylesheets %}
+
         {% endblock head_css %}
         {% block style %}
         {% endblock style %}

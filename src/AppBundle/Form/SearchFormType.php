@@ -26,11 +26,11 @@ class SearchFormType extends AbstractType
                 [
                     'label'=>false,
                     'autocomplete' => [
-                        'route' => 'ajax_autocomplete',
+                        'route' => 'search_autocomplete',
                         'search' => 'q',
                         'display' => 'name',
                         'key' => 'id',
-                        'input_key' => 'search_form[myId]',
+                        'input_key' => 'search_form[id]',
                         'highlight' => true,
                         'limit' => 5,
                         'minLength' => 1,

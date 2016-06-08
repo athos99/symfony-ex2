@@ -16,22 +16,4 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class AjaxController extends Controller
 {
-    /**
-     * @Route("/auto/{q}", name="ajax_autocomplete", condition="request.isXmlHttpRequest()", defaults={"q" = ""})
-     */
-    public function indexAction(Request $request, $q)
-    {
-        /** @var $em  EntityManager */
-        $em = $this->getDoctrine()->getManager();
-
-        if ($q != '') {
-            $query = $em->createQuery('SELECT p.name, p.id FROM AppBundle:Projet p WHERE p.name LIKE :query')
-                ->setParameter(':query', '%' . $q . '%');
-        } else {
-            $query = $em->createQuery('SELECT p.name, p.id FROM AppBundle:Projet p');
-
-        }
-        $data = $query->setMaxResults(50)->getArrayResult();
-        return JsonResponse::create($data);
-    }
 }

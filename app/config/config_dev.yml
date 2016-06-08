@@ -1,8 +1,6 @@
 imports:
     - { resource: config.yml }
 
-braincrafted_bootstrap:
-    jquery_path: %kernel.root_dir%/../vendor/components/jquery/jquery.js
 
 
 framework:

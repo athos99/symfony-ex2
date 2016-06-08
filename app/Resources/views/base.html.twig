@@ -2,18 +2,13 @@
 
 {% block style %}
     {% stylesheets
-    '@AppBundle/Resources/css/style.css'
-    '@AppBundle/Resources/css/typeahead.css' %}
+    '@AppBundle/Resources/css/style.css' %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>
     {% endstylesheets %}
 {% endblock style %}
 
 
 {% block script %}
-    {% javascripts
-    '@AppBundle/Resources/js/typeahead.bundle.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
 {% endblock script %}
 
 {% block navbar %}

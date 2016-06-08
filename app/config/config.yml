@@ -37,7 +37,6 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
-#        - BraincraftedBootstrapBundle:Form:bootstrap.html.twig
         - form/fields.html.twig
 
 
@@ -65,7 +64,7 @@ assetic:
 knp_menu:
     # use "twig: false" to disable the Twig extension and the TwigRenderer
     twig:
-        template: BraincraftedBootstrapBundle:Menu:bootstrap.html.twig
+        template: :menu:bootstrap.html.twig
     #  if true, enables the helper for PHP templates
     templating: false
     # the renderer to use, list is also available by default
@@ -91,21 +90,21 @@ knp_paginator:
 
 
 
-braincrafted_bootstrap:
-    output_dir:
-    assets_dir: %kernel.root_dir%/../vendor/twbs/bootstrap
-    jquery_path: %kernel.root_dir%/../vendor/components/jquery/jquery.min.js
-    css_preprocessor: lessphp
-    fonts_dir: %kernel.root_dir%/../web/fonts
-    auto_configure:
-        assetic: true
-        twig: false
-        knp_menu: true
-        knp_paginator: true
-    customize:
-        variables_file: ~
-        bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
-        bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig
+#braincrafted_bootstrap:
+#    output_dir:
+#    assets_dir: %kernel.root_dir%/../vendor/twbs/bootstrap
+#    jquery_path: %kernel.root_dir%/../vendor/components/jquery/jquery.min.js
+#    css_preprocessor: lessphp
+#    fonts_dir: %kernel.root_dir%/../web/fonts
+#    auto_configure:
+#        assetic: true
+#        twig: false
+#        knp_menu: true
+#        knp_paginator: true
+#    customize:
+#        variables_file: ~
+#        bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
+#        bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig
 
 #mopa_bootstrap:
 #    form: ~  # Adds twig form theme  support

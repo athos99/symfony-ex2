@@ -3,28 +3,35 @@
 namespace AppBundle\Model;
 
 
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
 
 class DataBase
 {
 
     /**
-     * @var  EntityManager
+     * @var  Registry
+     */
+    public $registry;
+
+    /**
+     * @var EntityManager
      */
     public $em;
 
     /** @var  DataBase */
     protected static $instance = null;
 
-    public function __construct(EntityManager $em)
+    public function __construct(Registry $registry)
     {
-        $this->em = $em;
+        $this->$registry = $registry;
+        $this->em = $registry->getManager();
     }
 
-    public static function instance(EntityManager $em)
+    public static function instance(Registry $registry)
     {
         if (!self::$instance) {
-            self::$instance = new DataBase($em);
+            self::$instance = new DataBase($registry);
         }
     }
 

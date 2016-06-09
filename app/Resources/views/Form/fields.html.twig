@@ -52,9 +52,6 @@
                     $t.bind('typeahead:autocomplete', function (e, item) {
                         $input_key.val(item['{{ autocomplete.key }}']);
                     });
-                    $t.bind('typeahead:change', function (e, item) {
-                        $input_key.val(item['{{ autocomplete.key }}']);
-                    });
                     {% endif %}
                 });
             </script>

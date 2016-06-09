@@ -20,7 +20,6 @@ class ProjetController extends Controller
      */
     public function indexAction(Request $request, $id)
     {
-$x=$this->getDoctrine();
         $dataBase = DataBase::instance($this->getDoctrine());
 
         // replace this example code with whatever you need

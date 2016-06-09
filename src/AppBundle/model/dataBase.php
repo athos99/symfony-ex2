@@ -10,11 +10,6 @@ class DataBase
 {
 
     /**
-     * @var  Registry
-     */
-    public $registry;
-
-    /**
      * @var EntityManager
      */
     public $em;
@@ -22,16 +17,15 @@ class DataBase
     /** @var  DataBase */
     protected static $instance = null;
 
-    public function __construct(Registry $registry)
+    public function __construct(EntityManager $em)
     {
-        $this->$registry = $registry;
-        $this->em = $registry->getManager();
+        $this->em = $em;
     }
 
-    public static function instance(Registry $registry)
+    public static function instance(EntityManager $em)
     {
         if (!self::$instance) {
-            self::$instance = new DataBase($registry);
+            self::$instance = new DataBase($em);
         }
     }
 

@@ -1,14 +1,10 @@
 <?php
 
-namespace AppBundle\Model;
-
-
-use Doctrine\Bundle\DoctrineBundle\Registry;
+namespace AppBundle\Service;
 use Doctrine\ORM\EntityManager;
 
 class DataBase
 {
-
     /**
      * @var EntityManager
      */
@@ -22,11 +18,5 @@ class DataBase
         $this->em = $em;
     }
 
-    public static function instance(EntityManager $em)
-    {
-        if (!self::$instance) {
-            self::$instance = new DataBase($em);
-        }
-    }
 
 }

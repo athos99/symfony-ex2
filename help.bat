@@ -4,7 +4,6 @@ php bin/console config:dump-reference doctrine  > doctrine.txt
 rem php bin/console config:dump-reference doctrine_cache > doctrine_cache.txt
 php bin/console config:dump-reference twig > twig.txt
 php bin/console config:dump-reference framework >  framework.txt
-php bin/console config:dump-reference mopa_bootstrap > mopa_bootstrap.txt
 php bin/console debug:container >  container.txt
 
 

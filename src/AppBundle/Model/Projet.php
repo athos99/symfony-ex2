@@ -7,27 +7,26 @@ use Doctrine\ORM\EntityManager;
 
 class Projet extends Base
 {
-    /**
-     * @var ProjetRepository
-     */
-   public $projetRepo;
 
    public function __construct(EntityManager $em)
    {
        parent::__construct($em);
-       $this->projetRepo = $this->em->getRepository('AppBundle:Projet');
    }
 
+    /**
+     * @param $id
+     * @return \AppBundle\Entity\Projet
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function loadProjet($id)
     {
-        /** @var \AppBundle\Entity\Projet $projet */
-        $projet = $this->projetRepo->find($id);
-        $taches = $projet->getTaches();
-        foreach( $taches as $tache) {
-            $x= $tache;
-        }
-
-        $projet = $this->projetRepo->findOneByIdJoinedToTache($id);
-
+        return $this->em->createQuery('
+        SELECT p,t,c FROM AppBundle:Projet p
+        LEFT JOIN p.taches t 
+        LEFT JOIN t.cfc c
+        WHERE p.id = :id
+            ')->setParameter(':id',$id)
+            ->getSingleResult();
     }
 }

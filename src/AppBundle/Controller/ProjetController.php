@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Helper\Application;
 use AppBundle\Model\DataBase;
 use AppBundle\Model\Projet;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,17 +22,19 @@ class ProjetController extends Controller
      */
     public function indexAction(Request $request, $id)
     {
-        /** @var \AppBundle\Service\DataBase $dataBase */
-        $dataBase = $this->container->get('app.database');
+        /** @var Projet $projetModel */
+        $projetModel = $this->container->get('app.model.projet');
 
-        /** @var Projet $projet */
-        $projet = $this->container->get('app.model.projet');
+        $projet = $projetModel->loadProjet($id);
+        
+        $logger = Application::getLogger();
+        $logger->info('I just got the logger');
+        $logger->error('An error occurred');
 
 
-        $data = $projet->loadProjet($id);
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+        return $this->render('projet/edit.html.twig', [
+            'projet' => $projet,
         ]);
     }
 }

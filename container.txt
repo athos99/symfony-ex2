@@ -1,19 +1,27 @@
 
-Symfony Container Public Services
-=================================
+[33mSymfony Container Public Services[39m
+[33m=================================[39m
 
  -------------------------------------------------------------------- -------------------------------------------------------------------------------------------- 
-  Service ID                                                           Class name                                                                                  
+  [32mService ID[39m                                                           [32mClass name[39m                                                                                  
  -------------------------------------------------------------------- -------------------------------------------------------------------------------------------- 
   annotation_reader                                                    Doctrine\Common\Annotations\CachedReader                                                    
-  app.autocomplete_type_extension                                      AppBundle\Form\Extension\AutocompleteTypeExtension                                          
+  app.button_plus_type_extension                                       AppBundle\Form\Extension\ButtonPlusTypeExtension                                            
+  app.database                                                         AppBundle\Service\DataBase                                                                  
+  app.model.projet                                                     AppBundle\Model\Projet                                                                      
+  app.text_plus_type_extension                                         AppBundle\Form\Extension\TextPlusTypeExtension                                              
   assetic.asset_manager                                                Assetic\Factory\LazyAssetManager                                                            
   assetic.controller                                                   Symfony\Bundle\AsseticBundle\Controller\AsseticController                                   
   assetic.filter.cssrewrite                                            Assetic\Filter\CssRewriteFilter                                                             
+  assetic.filter.lessphp                                               Assetic\Filter\LessphpFilter                                                                
+  assetic.filter.scssphp                                               Assetic\Filter\ScssphpFilter                                                                
   assetic.filter_manager                                               Symfony\Bundle\AsseticBundle\FilterManager                                                  
   assetic.request_listener                                             Symfony\Bundle\AsseticBundle\EventListener\RequestListener                                  
   assets.context                                                       Symfony\Component\Asset\Context\RequestStackContext                                         
   assets.packages                                                      Symfony\Component\Asset\Packages                                                            
+  cache.app                                                            Symfony\Component\Cache\Adapter\FilesystemAdapter                                           
+  cache.default_redis_provider                                         Redis                                                                                       
+  cache.system                                                         Symfony\Component\Cache\Adapter\AdapterInterface                                            
   cache_clearer                                                        Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer                                 
   cache_warmer                                                         Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate                               
   config_cache_factory                                                 Symfony\Component\Config\ResourceCheckerConfigCacheFactory                                  
@@ -21,9 +29,10 @@ Symfony Container Public Services
   data_collector.dump                                                  Symfony\Component\HttpKernel\DataCollector\DumpDataCollector                                
   data_collector.form                                                  Symfony\Component\Form\Extension\DataCollector\FormDataCollector                            
   data_collector.form.extractor                                        Symfony\Component\Form\Extension\DataCollector\FormDataExtractor                            
-  data_collector.request                                               Symfony\Component\HttpKernel\DataCollector\RequestDataCollector                             
+  data_collector.request                                               Symfony\Bundle\FrameworkBundle\DataCollector\RequestDataCollector                           
   data_collector.router                                                Symfony\Bundle\FrameworkBundle\DataCollector\RouterDataCollector                            
   database_connection                                                  alias for "doctrine.dbal.default_connection"                                                
+  debug.argument_resolver                                              Symfony\Component\HttpKernel\Controller\TraceableArgumentResolver                           
   debug.controller_resolver                                            Symfony\Component\HttpKernel\Controller\TraceableControllerResolver                         
   debug.debug_handlers_listener                                        Symfony\Component\HttpKernel\EventListener\DebugHandlersListener                            
   debug.dump_listener                                                  Symfony\Component\HttpKernel\EventListener\DumpListener                                     
@@ -34,6 +43,7 @@ Symfony Container Public Services
   doctrine.dbal.default_connection                                     Doctrine\DBAL\Connection                                                                    
   doctrine.orm.default_entity_listener_resolver                        Doctrine\ORM\Mapping\DefaultEntityListenerResolver                                          
   doctrine.orm.default_entity_manager                                  Doctrine\ORM\EntityManager                                                                  
+  doctrine.orm.default_entity_manager.property_info_extractor          Symfony\Bridge\Doctrine\PropertyInfo\DoctrineExtractor                                      
   doctrine.orm.default_listeners.attach_entity_listeners               Doctrine\ORM\Tools\AttachEntityListenersListener                                            
   doctrine.orm.default_manager_configurator                            Doctrine\Bundle\DoctrineBundle\ManagerConfigurator                                          
   doctrine.orm.default_metadata_cache                                  alias for "doctrine_cache.providers.doctrine.orm.default_metadata_cache"                    
@@ -121,9 +131,12 @@ Symfony Container Public Services
   monolog.handler.console                                              Symfony\Bridge\Monolog\Handler\ConsoleHandler                                               
   monolog.handler.debug                                                Symfony\Bridge\Monolog\Handler\DebugHandler                                                 
   monolog.handler.main                                                 Monolog\Handler\StreamHandler                                                               
+  monolog.handler.myappli                                              Monolog\Handler\StreamHandler                                                               
   monolog.logger.assetic                                               Symfony\Bridge\Monolog\Logger                                                               
+  monolog.logger.cache                                                 Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.doctrine                                              Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.event                                                 Symfony\Bridge\Monolog\Logger                                                               
+  monolog.logger.myapp                                                 Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.php                                                   Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.profiler                                              Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.request                                               Symfony\Bridge\Monolog\Logger                                                               
@@ -131,27 +144,6 @@ Symfony Container Public Services
   monolog.logger.security                                              Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.templating                                            Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.translation                                           Symfony\Bridge\Monolog\Logger                                                               
-  mopa_bootstrap.form.type.form_actions                                Mopa\Bundle\BootstrapBundle\Form\Type\FormActionsType                                       
-  mopa_bootstrap.form.type.tab                                         Mopa\Bundle\BootstrapBundle\Form\Type\TabType                                               
-  mopa_bootstrap.form.type_extension.button                            Mopa\Bundle\BootstrapBundle\Form\Extension\IconButtonExtension                              
-  mopa_bootstrap.form.type_extension.date                              Mopa\Bundle\BootstrapBundle\Form\Extension\DateTypeExtension                                
-  mopa_bootstrap.form.type_extension.datetime                          Mopa\Bundle\BootstrapBundle\Form\Extension\DatetimeTypeExtension                            
-  mopa_bootstrap.form.type_extension.embed_form                        Mopa\Bundle\BootstrapBundle\Form\Extension\EmbedFormExtension                               
-  mopa_bootstrap.form.type_extension.error                             Mopa\Bundle\BootstrapBundle\Form\Extension\ErrorTypeFormTypeExtension                       
-  mopa_bootstrap.form.type_extension.help                              Mopa\Bundle\BootstrapBundle\Form\Extension\HelpFormTypeExtension                            
-  mopa_bootstrap.form.type_extension.horizontal                        Mopa\Bundle\BootstrapBundle\Form\Extension\HorizontalFormTypeExtension                      
-  mopa_bootstrap.form.type_extension.legend                            Mopa\Bundle\BootstrapBundle\Form\Extension\LegendFormTypeExtension                          
-  mopa_bootstrap.form.type_extension.offset_button                     Mopa\Bundle\BootstrapBundle\Form\Extension\OffsetButtonExtension                            
-  mopa_bootstrap.form.type_extension.static_text                       Mopa\Bundle\BootstrapBundle\Form\Extension\StaticTextExtension                              
-  mopa_bootstrap.form.type_extension.tabbed                            Mopa\Bundle\BootstrapBundle\Form\Extension\TabbedFormTypeExtension                          
-  mopa_bootstrap.form.type_extension.time                              Mopa\Bundle\BootstrapBundle\Form\Extension\TimeTypeExtension                                
-  mopa_bootstrap.form.type_extension.widget                            Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetFormTypeExtension                          
-  mopa_bootstrap.form.type_extension.widget_collection                 Mopa\Bundle\BootstrapBundle\Form\Extension\WidgetCollectionFormTypeExtension                
-  mopa_bootstrap.menu.extension                                        Mopa\Bundle\BootstrapBundle\Menu\Factory\MenuExtension                                      
-  mopa_bootstrap.twig.extension.bootstrap_flash                        Mopa\Bundle\BootstrapBundle\Twig\FlashExtension                                             
-  mopa_bootstrap.twig.extension.bootstrap_form                         Mopa\Bundle\BootstrapBundle\Twig\FormExtension                                              
-  mopa_bootstrap.twig.extension.bootstrap_icon                         Mopa\Bundle\BootstrapBundle\Twig\IconExtension                                              
-  mopa_bootstrap.twig.extension.menu                                   Mopa\Bundle\BootstrapBundle\Twig\MenuExtension                                              
   profiler                                                             Symfony\Component\HttpKernel\Profiler\Profiler                                              
   profiler_listener                                                    Symfony\Component\HttpKernel\EventListener\ProfilerListener                                 
   property_accessor                                                    Symfony\Component\PropertyAccess\PropertyAccessor                                           
@@ -260,4 +252,5 @@ Symfony Container Public Services
   web_profiler.debug_toolbar                                           Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener                      
  -------------------------------------------------------------------- -------------------------------------------------------------------------------------------- 
 
- // To search for a specific service, re-run this command with a search term. (e.g. debug:container log)
+ // To search for a specific service, re-run this command with a search term. (e.g. [33mdebug:container log[39m)                
+

@@ -73,11 +73,9 @@ class Tache
     /**
      * @var \AppBundle\Entity\Projet
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projet")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="projet_id", referencedColumnName="id")
-     * })
-     */
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projet", inversedBy="taches")
+     * @ORM\JoinColumn(name="projet_id", referencedColumnName="id")
+     *      */
     private $projet;
 
     /**

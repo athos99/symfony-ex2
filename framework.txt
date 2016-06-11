@@ -40,6 +40,7 @@ framework:
         only_master_requests:  false
         dsn:                  'file:%kernel.cache_dir%/profiler'
         matcher:
+            enabled:              false
 
             # use the urldecoded format
             path:                 ~ # Example: ^/path to resource/
@@ -48,6 +49,7 @@ framework:
 
     # router configuration
     router:
+        enabled:              false
         resource:             ~ # Required
         type:                 ~
         http_port:            80
@@ -61,6 +63,7 @@ framework:
 
     # session configuration
     session:
+        enabled:              false
         storage_id:           session.storage.native
         handler_id:           session.handler.native_file
         name:                 ~
@@ -80,6 +83,7 @@ framework:
 
     # request configuration
     request:
+        enabled:              false
         formats:
 
             # Prototype
@@ -87,6 +91,7 @@ framework:
 
     # templating configuration
     templating:
+        enabled:              false
         hinclude_default_template:  null
         cache:                ~
         form:
@@ -102,6 +107,8 @@ framework:
 
     # assets configuration
     assets:
+        enabled:              false
+        version_strategy:     null
         version:              null
         version_format:       '%%s?%%s'
         base_path:            ''
@@ -110,6 +117,7 @@ framework:
 
             # Prototype
             name:
+                version_strategy:     null
                 version:              ~
                 version_format:       null
                 base_path:            ''
@@ -128,7 +136,7 @@ framework:
     # validation configuration
     validation:
         enabled:              false
-        cache:                ~
+        cache:                validator.mapping.cache.symfony
         enable_annotations:   false
         static_method:
 
@@ -158,4 +166,28 @@ framework:
     # Property info configuration
     property_info:
         enabled:              false
+
+    # Cache configuration
+    cache:
+
+        # App related cache pools configuration
+        app:                  cache.adapter.filesystem
+
+        # System related cache pools configuration
+        system:               cache.adapter.system
+        directory:            '%kernel.cache_dir%/pools'
+        default_doctrine_provider:  ~
+        default_psr6_provider:  ~
+        default_redis_provider:  'redis://localhost'
+        pools:
+
+            # Prototype
+            name:
+                adapter:              cache.app
+                public:               false
+                default_lifetime:     ~
+
+                # The service name to use as provider when the specified adapter needs one.
+                provider:             ~
+                clearer:              cache.default_clearer
 

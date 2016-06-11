@@ -32,6 +32,11 @@ framework:
     http_method_override: true
     assets: ~
 
+
+monolog:
+    channels: ['application']
+
+
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
@@ -49,7 +54,7 @@ assetic:
     bundles:        [ ]
     filters:
         lessphp:
-            file: %kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php
+            file: "%kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php"
             apply_to: "\\.less$"
         scssphp: ~
         cssrewrite: ~

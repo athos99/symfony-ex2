@@ -30,7 +30,7 @@ class SearchController extends Controller
         $form = $this->createForm(SearchFormType::class, $searchForm, ['action'=> $this->generateUrl('search'),'attr'=>['class'=>'navbar-form']]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-           return $this->redirectToRoute('projet', array('i' => $searchForm->getId()));
+           return $this->redirectToRoute('projet', array('id' => $searchForm->getId()));
         }
 
         $result= $this->render('form/search.html.twig', array(

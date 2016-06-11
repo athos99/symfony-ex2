@@ -60,6 +60,12 @@ doctrine:
 
                 # Use savepoints for nested transactions
                 use_savepoints:       ~
+
+                # Optional parameter, complete whether to add the INSTANCE_NAME parameter in the connection. It is generally used to connect to an Oracle RAC server to select the name of a particular instance.
+                instancename:         ~
+
+                # Complete Easy Connect connection descriptor, see https://docs.oracle.com/database/121/NETAG/naming.htm.When using this option, you will still need to provide the user and password parameters, but the other parameters will no longer be used. Note that when using this parameter, the getHost and getPort methods from Doctrine\DBAL\Connection will no longer function as expected.
+                connectstring:        ~
                 driver:               pdo_mysql
                 platform_service:     ~
                 auto_commit:          ~
@@ -138,6 +144,12 @@ doctrine:
 
                         # Use savepoints for nested transactions
                         use_savepoints:       ~
+
+                        # Optional parameter, complete whether to add the INSTANCE_NAME parameter in the connection. It is generally used to connect to an Oracle RAC server to select the name of a particular instance.
+                        instancename:         ~
+
+                        # Complete Easy Connect connection descriptor, see https://docs.oracle.com/database/121/NETAG/naming.htm.When using this option, you will still need to provide the user and password parameters, but the other parameters will no longer be used. Note that when using this parameter, the getHost and getPort methods from Doctrine\DBAL\Connection will no longer function as expected.
+                        connectstring:        ~
                 shards:
                     id:                   ~ # Required
 
@@ -188,6 +200,12 @@ doctrine:
 
                     # Use savepoints for nested transactions
                     use_savepoints:       ~
+
+                    # Optional parameter, complete whether to add the INSTANCE_NAME parameter in the connection. It is generally used to connect to an Oracle RAC server to select the name of a particular instance.
+                    instancename:         ~
+
+                    # Complete Easy Connect connection descriptor, see https://docs.oracle.com/database/121/NETAG/naming.htm.When using this option, you will still need to provide the user and password parameters, but the other parameters will no longer be used. Note that when using this parameter, the getHost and getPort methods from Doctrine\DBAL\Connection will no longer function as expected.
+                    connectstring:        ~
     orm:
         default_entity_manager:  ~
 

@@ -1,26 +1,29 @@
 
- // Provide the name of a bundle as the first argument of this command to dump its default configuration.
+[33mAvailable registered bundles with their extension alias if available[39m
+[33m====================================================================[39m
 
-Available registered bundles with their extension alias if available:
-+------------------------------+--------------------------+
-| Bundle name                  | Extension alias          |
-+------------------------------+--------------------------+
-| AppBundle                    |                          |
-| AsseticBundle                | assetic                  |
-| DebugBundle                  | debug                    |
-| DoctrineBundle               | doctrine                 |
-| DoctrineCacheBundle          | doctrine_cache           |
-| FrameworkBundle              | framework                |
-| KnpMenuBundle                | knp_menu                 |
-| KnpPaginatorBundle           | knp_paginator            |
-| MonologBundle                | monolog                  |
-| MopaBootstrapBundle          | mopa_bootstrap           |
-| SecurityBundle               | security                 |
-| SensioDistributionBundle     | sensio_distribution      |
-| SensioFrameworkExtraBundle   | sensio_framework_extra   |
-| SensioGeneratorBundle        |                          |
-| StofDoctrineExtensionsBundle | stof_doctrine_extensions |
-| SwiftmailerBundle            | swiftmailer              |
-| TwigBundle                   | twig                     |
-| WebProfilerBundle            | web_profiler             |
-+------------------------------+--------------------------+
+ ------------------------------ -------------------------- 
+  [32mBundle name[39m                    [32mExtension alias[39m           
+ ------------------------------ -------------------------- 
+  AppBundle                                                
+  AsseticBundle                  assetic                   
+  DebugBundle                    debug                     
+  DoctrineBundle                 doctrine                  
+  DoctrineCacheBundle            doctrine_cache            
+  FrameworkBundle                framework                 
+  KnpMenuBundle                  knp_menu                  
+  KnpPaginatorBundle             knp_paginator             
+  MonologBundle                  monolog                   
+  SecurityBundle                 security                  
+  SensioDistributionBundle       sensio_distribution       
+  SensioFrameworkExtraBundle     sensio_framework_extra    
+  SensioGeneratorBundle                                    
+  StofDoctrineExtensionsBundle   stof_doctrine_extensions  
+  SwiftmailerBundle              swiftmailer               
+  TwigBundle                     twig                      
+  WebProfilerBundle              web_profiler              
+ ------------------------------ -------------------------- 
+
+ // Provide the name of a bundle as the first argument of this command to dump its default configuration. (e.g.         
+ // [33mconfig:dump-reference FrameworkBundle[39m)                                                                              
+

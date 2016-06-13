@@ -5,6 +5,7 @@ rem php bin/console config:dump-reference doctrine_cache > doctrine_cache.txt
 php bin/console config:dump-reference twig > twig.txt
 php bin/console config:dump-reference framework >  framework.txt
 php bin/console debug:container >  container.txt
+php bin/console config:dump-reference stof_doctrine_extensions > stof_doctrine_extensions.txt
 
 
 

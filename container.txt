@@ -1,9 +1,9 @@
 
-[33mSymfony Container Public Services[39m
-[33m=================================[39m
+Symfony Container Public Services
+=================================
 
  -------------------------------------------------------------------- -------------------------------------------------------------------------------------------- 
-  [32mService ID[39m                                                           [32mClass name[39m                                                                                  
+  Service ID                                                           Class name                                                                                  
  -------------------------------------------------------------------- -------------------------------------------------------------------------------------------- 
   annotation_reader                                                    Doctrine\Common\Annotations\CachedReader                                                    
   app.button_plus_type_extension                                       AppBundle\Form\Extension\ButtonPlusTypeExtension                                            
@@ -128,15 +128,15 @@
   locale_listener                                                      Symfony\Component\HttpKernel\EventListener\LocaleListener                                   
   logger                                                               Symfony\Bridge\Monolog\Logger                                                               
   mailer                                                               alias for "swiftmailer.mailer.default"                                                      
+  monolog.handler.application                                          Monolog\Handler\StreamHandler                                                               
   monolog.handler.console                                              Symfony\Bridge\Monolog\Handler\ConsoleHandler                                               
   monolog.handler.debug                                                Symfony\Bridge\Monolog\Handler\DebugHandler                                                 
   monolog.handler.main                                                 Monolog\Handler\StreamHandler                                                               
-  monolog.handler.myappli                                              Monolog\Handler\StreamHandler                                                               
+  monolog.logger.application                                           Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.assetic                                               Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.cache                                                 Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.doctrine                                              Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.event                                                 Symfony\Bridge\Monolog\Logger                                                               
-  monolog.logger.myapp                                                 Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.php                                                   Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.profiler                                              Symfony\Bridge\Monolog\Logger                                                               
   monolog.logger.request                                               Symfony\Bridge\Monolog\Logger                                                               
@@ -252,5 +252,5 @@
   web_profiler.debug_toolbar                                           Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener                      
  -------------------------------------------------------------------- -------------------------------------------------------------------------------------------- 
 
- // To search for a specific service, re-run this command with a search term. (e.g. [33mdebug:container log[39m)                
+ // To search for a specific service, re-run this command with a search term. (e.g. debug:container log)                
 

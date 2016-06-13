@@ -1,9 +1,9 @@
 
-[33mAvailable registered bundles with their extension alias if available[39m
-[33m====================================================================[39m
+Available registered bundles with their extension alias if available
+====================================================================
 
  ------------------------------ -------------------------- 
-  [32mBundle name[39m                    [32mExtension alias[39m           
+  Bundle name                    Extension alias           
  ------------------------------ -------------------------- 
   AppBundle                                                
   AsseticBundle                  assetic                   
@@ -25,5 +25,5 @@
  ------------------------------ -------------------------- 
 
  // Provide the name of a bundle as the first argument of this command to dump its default configuration. (e.g.         
- // [33mconfig:dump-reference FrameworkBundle[39m)                                                                              
+ // config:dump-reference FrameworkBundle)                                                                              
 

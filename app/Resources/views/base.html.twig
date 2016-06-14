@@ -8,9 +8,6 @@
 {% endblock style %}
 
 
-{% block script %}
-{% endblock script %}
-
 {% block navbar %}
 
     <div class="navbar navbar-default navbar-fixed-top">
@@ -38,7 +35,17 @@
         </div>
     </div>
 
-
-
-
 {% endblock navbar %}
+
+
+{% block script %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var source = '<div class="entry"><h1>{{ '{{' }}title {{ '}}' }}</h1><div class="body"> {{ '{{' }} body {{ '}}' }}</div></div>';
+            var template = Handlebars.compile(source);
+            var context = {title: "My New Post", body: "This is my first post!"};
+            var html = template(context);
+
+        });
+    </script>
+{% endblock script %}

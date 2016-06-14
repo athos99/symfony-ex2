@@ -27,13 +27,22 @@ class SearchFormType extends AbstractType
                     'label'=>false,
                     'autocomplete' => [
                         'route' => 'search_autocomplete',
+//                        'prefetch' => 'search_autocomplete',
                         'search' => 'q',
                         'display' => 'name',
                         'key' => 'id',
                         'input_key' => 'search_form[id]',
                         'highlight' => true,
-                        'limit' => 5,
-                        'minLength' => 1,
+                        'limit' => 8,
+                        'minLength' => 2,
+                        'templates'=>'{
+                        empty: "empty",
+                        pending: "pending",
+                        header: "header",
+                        footer: "footer",
+                        notFound: "Not found",
+                        suggestion: Handlebars.compile(\'<div><strong>{{name}}</strong> – {{id}}</div>\')
+                        }'
                     ],
                     'input_group' => [
                         'button_append' => ['name' => 'search',

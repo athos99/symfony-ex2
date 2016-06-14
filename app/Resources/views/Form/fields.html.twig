@@ -29,7 +29,11 @@
                         {% endif %}
 
                         queryTokenizer: Bloodhound.tokenizers.whitespace,
-                        prefetch: '{{ url(autocomplete.route) }}',
+                        {% if autocomplete.prefetch is defined %}
+                        prefetch: {
+                            url: '{{ url(autocomplete.prefetch) }}'
+                        } ,
+                        {% endif %}
                         remote: {
                             url: '{{ url(autocomplete.route, { (autocomplete.search): ':query' }) }}',
                             wildcard: '{{ ':query' }}'
@@ -38,9 +42,13 @@
                     var $t = $('#{{ id }}').typeahead({
                         minLength:  {% if autocomplete.minLength is defined %} {{ autocomplete.minLength }} {% else %} 1 {% endif %},
                         highlight:  {% if autocomplete.highlight is defined %} {{ autocomplete.highlight ? 'true' : 'false' }} {% else %} false {% endif %}
+                        hint:  {% if autocomplete.hint is defined %} {{ autocomplete.hint ? 'true' : 'false' }} {% else %} true {% endif %}
                     }, {
                         source: {{ id }},
                         name: "{{ id }}",
+                        {% if autocomplete.templates is defined  %}
+                        templates : {{ autocomplete.templates|raw }},
+                        {% endif %}
                         limit:  {% if autocomplete.limit is defined %} {{ autocomplete.limit }} {% else %} 5 {% endif %}
                         {% if autocomplete.display is defined %}, display: '{{ autocomplete.display }}' {% endif %}
                     });

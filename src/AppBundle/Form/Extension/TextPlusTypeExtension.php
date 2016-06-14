@@ -30,12 +30,15 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  *      'search'    parametre de recherche de votre route
  *
  *  Optionals
+ *     'prefetch'  prefetch route
  *     'display'   depuis le json nom de la propriété a afficher
  *     'key'       depuis le json nom de la propriété de la reference
  *     'input_key' nom d'un autre champ du formulaire pour enregistrer la reference
  *     'highlight' boolean, enlumine le mot de recherche
  *     'minLength' nombre  de caracteres a saisir avant d'afficher des suggestions
  *     'limit'     nombre max de suggestions
+ *     'templates' template
+ *     'hint'      boolean  hint
  *
  */
 class TextPlusTypeExtension extends AbstractTypeExtension

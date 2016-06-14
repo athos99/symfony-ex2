@@ -27,14 +27,14 @@ class SearchFormType extends AbstractType
                     'label'=>false,
                     'autocomplete' => [
                         'route' => 'search_autocomplete',
-//                        'prefetch' => 'search_autocomplete',
+                        'prefetch' => 'search_autocomplete',
                         'search' => 'q',
                         'display' => 'name',
                         'key' => 'id',
                         'input_key' => 'search_form[id]',
                         'highlight' => true,
-                        'limit' => 8,
-                        'minLength' => 2,
+                        'limit' => 6,
+                        'minLength' => 1,
                         'templates'=>'{
                         empty: "empty",
                         pending: "pending",

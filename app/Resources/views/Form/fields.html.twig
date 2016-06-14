@@ -41,7 +41,7 @@
                     });
                     var $t = $('#{{ id }}').typeahead({
                         minLength:  {% if autocomplete.minLength is defined %} {{ autocomplete.minLength }} {% else %} 1 {% endif %},
-                        highlight:  {% if autocomplete.highlight is defined %} {{ autocomplete.highlight ? 'true' : 'false' }} {% else %} false {% endif %}
+                        highlight:  {% if autocomplete.highlight is defined %} {{ autocomplete.highlight ? 'true' : 'false' }} {% else %} false {% endif %},
                         hint:  {% if autocomplete.hint is defined %} {{ autocomplete.hint ? 'true' : 'false' }} {% else %} true {% endif %}
                     }, {
                         source: {{ id }},

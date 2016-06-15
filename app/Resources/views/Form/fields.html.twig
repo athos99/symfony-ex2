@@ -17,26 +17,30 @@
     {% endif %}
 
     {% if autocomplete is defined %}
-        {% spaceless %}
             <script type="text/javascript">
                 $(document).ready(function () {
                     var {{ id }} =
                     new Bloodhound({
                         {% if autocomplete.display is defined %}
                         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('{{ autocomplete.display }}'),
+                        identify: function(obj) { return obj.{{ autocomplete.display }}; },
                         {% else %}
                         datumTokenizer: Bloodhound.tokenizers.whitespace,
                         {% endif %}
-
                         queryTokenizer: Bloodhound.tokenizers.whitespace,
+                        sufficient:  {% if autocomplete.limit is defined %} {{ autocomplete.limit * 2}} {% else %} 10 {% endif %},
+
                         {% if autocomplete.prefetch is defined %}
                         prefetch: {
+                            {% if autocomplete.ttl is defined %}
+                            ttl: {{ autocomplete.ttl  }},
+                            {% endif %}
                             url: '{{ url(autocomplete.prefetch) }}'
                         } ,
                         {% endif %}
                         remote: {
                             url: '{{ url(autocomplete.route, { (autocomplete.search): ':query' }) }}',
-                            wildcard: '{{ ':query' }}'
+                            wildcard: '{{ ':query' }}',
                         }
                     });
                     var $t = $('#{{ id }}').typeahead({
@@ -63,7 +67,6 @@
                     {% endif %}
                 });
             </script>
-        {% endspaceless %}
     {% endif %}
 {%- endblock form_widget_simple -%}
 
@@ -87,11 +90,9 @@
 {%- endblock button_widget -%}
 
 {%- block glyphicons -%}
-    {% spaceless %}
         {% if icon is defined %}
             <span class="glyphicon glyphicon-{{ icon }}"></span>
         {% endif %}
-    {% endspaceless %}
 {%- endblock glyphicons -%}
 
 

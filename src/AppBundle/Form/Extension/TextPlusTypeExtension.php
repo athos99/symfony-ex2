@@ -39,6 +39,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  *     'limit'     nombre max de suggestions
  *     'templates' template
  *     'hint'      boolean  hint
+ *     'ttl'       seconds, duree de vie des datas prefetche
  *
  */
 class TextPlusTypeExtension extends AbstractTypeExtension

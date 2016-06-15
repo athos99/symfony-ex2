@@ -35,6 +35,7 @@ class SearchFormType extends AbstractType
                         'highlight' => true,
                         'limit' => 6,
                         'minLength' => 1,
+                        'ttl'=>500,
                         'templates'=>'{
                         empty: "empty",
                         pending: "pending",
